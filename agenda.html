@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Site - Agenda</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="agenda.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Mon Site</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="disponibilite.html">Disponibilités</a></li>
+                <li><a href="agenda.html" class="active">Agenda</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login-page.html" class="login-btn">Espace Adherent</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="agenda-hero">
+        <div class="hero-content">
+            <h2>Événements à venir</h2>
+            <p>Retrouvez toutes nos activités programmées</p>
+        </div>
+    </section>
+
+    <section class="agenda-container">
+        <div class="agenda-header">
+            <h3>Calendrier des événements</h3>
+            <div class="agenda-filters">
+                <select id="month-filter">
+                    <option value="all">Tous les mois</option>
+                    <option value="january">Janvier</option>
+                    <option value="february">Février</option>
+                    <option value="march" selected>Mars</option>
+                    <option value="april">Avril</option>
+                    <option value="may">Mai</option>
+                    <option value="june">Juin</option>
+                </select>
+                <select id="category-filter">
+                    <option value="all">Toutes les catégories</option>
+                    <option value="sport">Sport</option>
+                    <option value="culture">Culture</option>
+                    <option value="events">Événements</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="events-list">
+            <!-- Mars -->
+            <div class="event-date">
+                <h4>sam. 22 mars</h4>
+                <div class="date-line"></div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-time">08:00</div>
+                <div class="event-indicator anniversary-event"></div>
+                <div class="event-content">
+                    <h5>Anniv bébé</h5>
+                    <p class="event-hours">08:00 - 09:00</p>
+                    <p class="event-description">Célébration d'anniversaire.</p>
+                    <div class="event-actions">
+                        <button class="add-to-calendar">+ Ajouter à mon calendrier</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-time">14:30</div>
+                <div class="event-indicator sport-event"></div>
+                <div class="event-content">
+                    <h5>Match de football</h5>
+                    <p class="event-hours">14:30 - 16:00</p>
+                    <p class="event-description">Match amical au stade municipal.</p>
+                    <div class="event-actions">
+                        <button class="add-to-calendar">+ Ajouter à mon calendrier</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-date">
+                <h4>dim. 23 mars</h4>
+                <div class="date-line"></div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-time">10:00</div>
+                <div class="event-indicator culture-event"></div>
+                <div class="event-content">
+                    <h5>Atelier de peinture</h5>
+                    <p class="event-hours">10:00 - 12:00</p>
+                    <p class="event-description">Atelier créatif pour tous les niveaux.</p>
+                    <div class="event-actions">
+                        <button class="add-to-calendar">+ Ajouter à mon calendrier</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-date">
+                <h4>lun. 24 mars</h4>
+                <div class="date-line"></div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-time">19:00</div>
+                <div class="event-indicator meeting-event"></div>
+                <div class="event-content">
+                    <h5>Réunion des parents</h5>
+                    <p class="event-hours">19:00 - 20:30</p>
+                    <p class="event-description">Réunion d'information pour les parents d'élèves.</p>
+                    <div class="event-actions">
+                        <button class="add-to-calendar">+ Ajouter à mon calendrier</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Avril -->
+            <div class="event-date">
+                <h4>mar. 1 avril</h4>
+                <div class="date-line"></div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-time">09:30</div>
+                <div class="event-indicator special-event"></div>
+                <div class="event-content">
+                    <h5>Journée portes ouvertes</h5>
+                    <p class="event-hours">09:30 - 17:00</p>
+                    <p class="event-description">Venez découvrir nos installations et rencontrer notre équipe.</p>
+                    <div class="event-actions">
+                        <button class="add-to-calendar">+ Ajouter à mon calendrier</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="agenda-actions">
+            <button class="load-more-btn">Afficher plus d'événements</button>
+            <button class="export-calendar-btn">Exporter le calendrier</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>À propos</h4>
+                <p>Notre entreprise propose des services de qualité depuis 2010.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: contact@monsite.fr</p>
+                <p>Téléphone: 01 23 45 67 89</p>
+            </div>
+            <div class="footer-section">
+                <h4>Liens utiles</h4>
+                <ul>
+                    <li><a href="mentions-legales.html">Mentions légales</a></li>
+                    <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Mon Site. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="agenda.js"></script>
+</body>
+</html>

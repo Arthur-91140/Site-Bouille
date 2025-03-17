@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Site - Galerie Photos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="member-area">
+    <header class="member-header">
+        <div class="logo">
+            <h1>Espace Membre</h1>
+        </div>
+        <nav class="member-nav">
+            <ul>
+                <li><a href="dashboard.html">Tableau de bord</a></li>
+                <li><a href="gallery.html" class="active">Galerie Photos</a></li>
+                <li><a href="documents.html">Documents</a></li>
+                <li><a href="profile.html">Mon Profil</a></li>
+                <li><a href="#" id="logout-btn" class="logout-btn">Déconnexion</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="gallery-container">
+        <div class="gallery-header">
+            <h2>Galerie Photos</h2>
+            <div class="gallery-actions">
+                <select id="album-select">
+                    <option value="all">Tous les albums</option>
+                    <option value="album1">Album 1</option>
+                    <option value="album2">Album 2</option>
+                    <option value="album3">Album 3</option>
+                </select>
+                <button id="upload-btn" class="cta-button">Ajouter des photos</button>
+            </div>
+        </div>
+
+        <div id="photo-upload-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3>Ajouter des photos</h3>
+                <form id="upload-form">
+                    <div class="form-group">
+                        <label for="file-upload">Sélectionner des fichiers</label>
+                        <input type="file" id="file-upload" name="photos" multiple accept="image/*">
+                    </div>
+                    <div class="form-group">
+                        <label for="album">Album</label>
+                        <select id="album" name="album">
+                            <option value="album1">Album 1</option>
+                            <option value="album2">Album 2</option>
+                            <option value="album3">Album 3</option>
+                            <option value="new">Nouvel album...</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="new-album-group" style="display:none;">
+                        <label for="new-album-name">Nom du nouvel album</label>
+                        <input type="text" id="new-album-name" name="new-album-name">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="submit-btn">Télécharger</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="gallery-grid" id="photo-gallery">
+            <!-- Les images seront insérées ici via JavaScript -->
+        </div>
+
+        <div id="photo-viewer" class="modal">
+            <div class="modal-content photo-viewer-content">
+                <span class="close-modal">&times;</span>
+                <img id="enlarged-photo" src="" alt="Photo agrandie">
+                <div class="photo-controls">
+                    <button id="prev-photo">&lt;</button>
+                    <button id="next-photo">&gt;</button>
+                </div>
+                <div class="photo-info">
+                    <h4 id="photo-title">Titre de la photo</h4>
+                    <p id="photo-date">Date: </p>
+                    <p id="photo-album">Album: </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="member-footer">
+        <p>&copy; 2025 Mon Site. Tous droits réservés.</p>
+        <p><a href="index.html">Retour au site public</a></p>
+    </footer>
+
+    <script src="gallery-script.js"></script>
+</body>
+</html>

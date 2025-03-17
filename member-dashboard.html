@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Site - Espace Membre</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="member-area">
+    <header class="member-header">
+        <div class="logo">
+            <h1>Espace Membre</h1>
+        </div>
+        <nav class="member-nav">
+            <ul>
+                <li><a href="dashboard.html" class="active">Tableau de bord</a></li>
+                <li><a href="gallery.html">Galerie Photos</a></li>
+                <li><a href="documents.html">Documents</a></li>
+                <li><a href="profile.html">Mon Profil</a></li>
+                <li><a href="#" id="logout-btn" class="logout-btn">Déconnexion</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="dashboard-container">
+        <div class="welcome-section">
+            <h2>Bienvenue, <span id="member-name">Membre</span> !</h2>
+            <p>Voici votre espace personnel. Accédez à vos contenus exclusifs.</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <div class="card-icon">📸</div>
+                <h3>Galerie Photos</h3>
+                <p>Accédez à toutes vos photos</p>
+                <a href="gallery.html" class="card-link">Voir la galerie</a>
+            </div>
+            <div class="dashboard-card">
+                <div class="card-icon">📄</div>
+                <h3>Documents</h3>
+                <p>Consultez vos documents privés</p>
+                <a href="documents.html" class="card-link">Voir les documents</a>
+            </div>
+            <div class="dashboard-card">
+                <div class="card-icon">👤</div>
+                <h3>Profil</h3>
+                <p>Modifiez vos informations personnelles</p>
+                <a href="profile.html" class="card-link">Gérer mon profil</a>
+            </div>
+            <div class="dashboard-card">
+                <div class="card-icon">🔔</div>
+                <h3>Notifications</h3>
+                <p>Vous avez <span id="notification-count">0</span> nouvelles notifications</p>
+                <a href="notifications.html" class="card-link">Voir les notifications</a>
+            </div>
+        </div>
+
+        <div class="recent-activity">
+            <h3>Activité récente</h3>
+            <ul id="activity-list">
+                <!-- Les activités récentes seront insérées ici via JavaScript -->
+            </ul>
+        </div>
+    </section>
+
+    <footer class="member-footer">
+        <p>&copy; 2025 Mon Site. Tous droits réservés.</p>
+        <p><a href="index.html">Retour au site public</a></p>
+    </footer>
+
+    <script src="member-script.js"></script>
+</body>
+</html>
