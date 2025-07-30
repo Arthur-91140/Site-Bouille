@@ -1,4 +1,10 @@
-// Agenda JavaScript pour Les P'tites Bauilles
+document.querySelector('.download-calendar-btn').addEventListener('click', function() {
+    const link = document.createElement('a');
+    link.href = '../assets/calendrier-ptites-bauilles.pdf';
+    link.download = 'Planning-Les-Ptites-Bauilles-2025-2026.pdf';
+    link.click();
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     const periodFilter = document.getElementById('period-filter');
     const activityFilter = document.getElementById('activity-filter');
