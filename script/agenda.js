@@ -1,11 +1,17 @@
-document.querySelector('.download-calendar-btn').addEventListener('click', function() {
-    const link = document.createElement('a');
-    link.href = '../assets/calendrier-ptites-bauilles.pdf';
-    link.download = 'Planning-Les-Ptites-Bauilles-2025-2026.pdf';
-    link.click();
-});
-
 document.addEventListener('DOMContentLoaded', function() {
+    // Gestion du bouton de téléchargement
+    const downloadBtn = document.querySelector('.download-calendar-btn');
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', function() {
+            const link = document.createElement('a');
+            link.href = '../assets/planning-activite-2025-2026.pdf';
+            link.download = 'planning-activite-2025-2026.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    }
+
     const periodFilter = document.getElementById('period-filter');
     const activityFilter = document.getElementById('activity-filter');
     const eventsList = document.querySelector('.events-list');
