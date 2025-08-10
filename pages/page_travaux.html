@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page En Travaux - Mon Site</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Réinitialisation et styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Header adapté */
+        header {
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+            padding: 1.2rem 2.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        header .logo h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #ff4d79, #ff6b6b, #ff9d6c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: #ff4d79;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+
+        header nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            padding: 0.5rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: #ff4d79;
+        }
+
+        /* Container principal */
+        .construction-container {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Arrière-plan avec grille de construction */
+        .construction-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255, 77, 121, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 77, 121, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+        }
+
+        /* Zone de construction principale */
+        .construction-site {
+            text-align: center;
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Titre principal */
+        .construction-title {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff4d79 0%, #ff6b6b 50%, #ff9d6c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            position: relative;
+        }
+
+        .construction-subtitle {
+            font-size: 1.5rem;
+            color: #666;
+            margin-bottom: 3rem;
+            font-weight: 500;
+        }
+
+        /* Zone des ouvriers et équipements */
+        .workers-zone {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 2rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        /* Ouvrier avec casque */
+        .worker {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: workBounce 3s ease-in-out infinite;
+        }
+
+        .worker:nth-child(2) {
+            animation-delay: 1s;
+        }
+
+        .worker:nth-child(3) {
+            animation-delay: 2s;
+        }
+
+        .worker-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+        }
+
+        .worker-label {
+            background: linear-gradient(135deg, #ff4d79 0%, #ff6b6b 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(255, 77, 121, 0.3);
+        }
+
+        /* Grue en construction */
+        .crane {
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            font-size: 6rem;
+            color: #ffcf5c;
+            animation: craneSwing 4s ease-in-out infinite;
+            transform-origin: bottom center;
+        }
+
+        /* Outils volants */
+        .floating-tools {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .tool1 {
+            top: 15%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+
+        .tool2 {
+            top: 25%;
+            right: 20%;
+            animation-delay: 2s;
+        }
+
+        .tool3 {
+            bottom: 30%;
+            left: 10%;
+            animation-delay: 4s;
+        }
+
+        /* Barres de progression */
+        .progress-section {
+            margin: 4rem 0;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .progress-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .progress-item {
+            margin-bottom: 2rem;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #eee;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff4d79 0%, #ff6b6b 50%, #ff9d6c 100%);
+            border-radius: 10px;
+            transition: width 2s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        /* Message de retour */
+        .return-message {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 3rem;
+            border: 2px solid #f0f0f0;
+        }
+
+        .return-message h3 {
+            color: #ff4d79;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .return-message p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Bouton de retour */
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff4d79 0%, #ff6b6b 100%);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 15px rgba(255, 77, 121, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 77, 121, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #182848 0%, #2b507c 100%);
+            color: #fff;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Animations */
+        @keyframes workBounce {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes craneSwing {
+            0%, 100% {
+                transform: rotate(-5deg);
+            }
+            50% {
+                transform: rotate(5deg);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-15px) rotate(5deg);
+            }
+            66% {
+                transform: translateY(-10px) rotate(-5deg);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        /* Particules de poussière */
+        .dust-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ddd;
+            border-radius: 50%;
+            animation: dustFloat 8s linear infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes dustFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .construction-title {
+                font-size: 2.5rem;
+            }
+
+            .construction-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .workers-zone {
+                gap: 1rem;
+            }
+
+            .worker-icon {
+                font-size: 3rem;
+            }
+
+            .crane {
+                font-size: 4rem;
+                top: 10%;
+                right: 5%;
+            }
+
+            header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            header nav ul {
+                gap: 1rem;
+            }
+
+            .floating-tools {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .construction-container {
+                padding: 2rem 1rem;
+            }
+
+            .construction-title {
+                font-size: 2rem;
+            }
+
+            .workers-zone {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .return-message {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Mon Site</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="./gallery.html">Galerie</a></li>
+                <li><a href="./disponibilite.html">Disponibilités</a></li>
+                <li><a href="./agenda.html">Agenda</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="construction-container">
+        <!-- Outils flottants -->
+        <div class="floating-tools tool1">🔨</div>
+        <div class="floating-tools tool2">🔧</div>
+        <div class="floating-tools tool3">⚙️</div>
+        
+        <!-- Grue -->
+        <div class="crane">🏗️</div>
+
+        <div class="construction-site">
+            <h1 class="construction-title">En Travaux</h1>
+            <p class="construction-subtitle">Notre équipe travaille dur pour vous préparer quelque chose d'exceptionnel !</p>
+
+            <!-- Zone des ouvriers -->
+            <div class="workers-zone">
+                <div class="worker">
+                    <div class="worker-icon">👷‍♂️</div>
+                    <div class="worker-label">Chef de chantier</div>
+                </div>
+                <div class="worker">
+                    <div class="worker-icon">👷‍♀️</div>
+                    <div class="worker-label">Architecte</div>
+                </div>
+                <div class="worker">
+                    <div class="worker-icon">👨‍🔧</div>
+                    <div class="worker-label">Développeur</div>
+                </div>
+            </div>
+
+            <!-- Barres de progression -->
+            <div class="progress-section">
+                <h3 class="progress-title">🚧 Avancement des travaux 🚧</h3>
+                
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span>📐 Conception</span>
+                        <span id="design-percent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="design-progress"></div>
+                    </div>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span>💻 Développement</span>
+                        <span id="dev-percent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="dev-progress"></div>
+                    </div>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span>🧪 Tests</span>
+                        <span id="test-percent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="test-progress"></div>
+                    </div>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span>🎨 Finitions</span>
+                        <span id="finish-percent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="finish-progress"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Message de retour -->
+            <div class="return-message">
+                <h3>🔔 Restez informé !</h3>
+                <p>Cette page sera bientôt disponible. En attendant, n'hésitez pas à explorer les autres sections de notre site. Nos équipes mettent tout en œuvre pour vous offrir la meilleure expérience possible.</p>
+                <a href="../index.html" class="back-button">← Retour à l'accueil</a>
+            </div>
+        </div>
+
+        <!-- Particules de poussière -->
+        <div id="dust-container"></div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Mon Site. Tous droits réservés. | Site en cours de construction</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animation des barres de progression
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressData = [
+                { id: 'design', target: 85, speed: 20 },
+                { id: 'dev', target: 65, speed: 15 },
+                { id: 'test', target: 40, speed: 25 },
+                { id: 'finish', target: 20, speed: 30 }
+            ];
+
+            // Démarrer les animations avec un délai
+            setTimeout(() => {
+                progressData.forEach((item, index) => {
+                    setTimeout(() => {
+                        animateProgress(item.id, item.target, item.speed);
+                    }, index * 500);
+                });
+            }, 1000);
+
+            // Créer des particules de poussière
+            createDustParticles();
+            
+            // Ajouter des sons de construction (simulation)
+            playConstructionSounds();
+        });
+
+        function animateProgress(id, targetPercent, speed) {
+            const progressBar = document.getElementById(id + '-progress');
+            const percentElement = document.getElementById(id + '-percent');
+            let currentPercent = 0;
+
+            const interval = setInterval(() => {
+                if (currentPercent < targetPercent) {
+                    currentPercent += Math.random() * 3 + 1; // Progression aléatoire
+                    if (currentPercent > targetPercent) currentPercent = targetPercent;
+                    
+                    progressBar.style.width = currentPercent + '%';
+                    percentElement.textContent = Math.round(currentPercent) + '%';
+                } else {
+                    clearInterval(interval);
+                }
+            }, speed);
+        }
+
+        function createDustParticles() {
+            const container = document.getElementById('dust-container');
+            const particleCount = 15;
+
+            for (let i = 0; i < particleCount; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'dust-particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                    particle.style.animationDelay = Math.random() * 2 + 's';
+                    container.appendChild(particle);
+
+                    // Supprimer la particule après l'animation
+                    setTimeout(() => {
+                        if (particle.parentNode) {
+                            particle.parentNode.removeChild(particle);
+                        }
+                    }, 8000);
+                }, i * 200);
+            }
+
+            // Recréer les particules en continu
+            setTimeout(createDustParticles, 3000);
+        }
+
+        function playConstructionSounds() {
+            // Simulation de sons de construction avec des messages console
+            const sounds = [
+                '🔨 *Marteau qui frappe*',
+                '⚡ *Perceuse en action*',
+                '🏗️ *Grue qui manœuvre*',
+                '🚛 *Camion qui recule - Bip bip*',
+                '⚙️ *Machines qui tournent*'
+            ];
+
+            setInterval(() => {
+                const randomSound = sounds[Math.floor(Math.random() * sounds.length)];
+                console.log(`🎵 Son du chantier: ${randomSound}`);
+            }, 5000);
+        }
+
+        // Animation de survol pour les ouvriers
+        document.querySelectorAll('.worker').forEach(worker => {
+            worker.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+
+            worker.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Messages motivants qui changent
+        const motivationalMessages = [
+            "Notre équipe travaille dur pour vous préparer quelque chose d'exceptionnel !",
+            "Patience... les meilleurs projets prennent du temps !",
+            "Chaque détail compte, nous peaufinons votre expérience !",
+            "Bientôt disponible... restez connecté !",
+            "Innovation en cours... merci de votre patience !"
+        ];
+
+        let messageIndex = 0;
+        setInterval(() => {
+            const subtitle = document.querySelector('.construction-subtitle');
+            subtitle.style.opacity = '0';
+            
+            setTimeout(() => {
+                messageIndex = (messageIndex + 1) % motivationalMessages.length;
+                subtitle.textContent = motivationalMessages[messageIndex];
+                subtitle.style.opacity = '1';
+            }, 500);
+        }, 8000);
+
+        // Effet de cliquetis sur le titre
+        document.querySelector('.construction-title').addEventListener('click', function() {
+            this.style.animation = 'none';
+            setTimeout(() => {
+                this.style.animation = 'pulse 1s ease-in-out';
+            }, 10);
+        });
+
+        // Gestion du temps d'attente estimé
+        function updateEstimatedTime() {
+            const now = new Date();
+            const targetDate = new Date(now.getTime() + (7 * 24 * 60 * 60 * 1000)); // 7 jours
+            const timeRemaining = targetDate - now;
+            const daysRemaining = Math.ceil(timeRemaining / (1000 * 60 * 60 * 24));
+            
+            // Ajouter le temps estimé si souhaité
+            console.log(`⏰ Temps estimé: ${daysRemaining} jours restants`);
+        }
+
+        updateEstimatedTime();
+    </script>
+</body>
+</html>
