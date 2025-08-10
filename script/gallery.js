@@ -1,178 +1,138 @@
 // Données des albums avec leurs photos
 const albumsData = {
-    vacances: {
-        title: "Vacances d'été",
-        date: "Août 2024",
-        photos: [
-            {
-                url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop",
-                alt: "Paysage montagneux"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=1200&h=800&fit=crop",
-                alt: "Coucher de soleil sur la mer"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&h=800&fit=crop",
-                alt: "Plage tropicale"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200&h=800&fit=crop",
-                alt: "Forêt verdoyante"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&h=800&fit=crop",
-                alt: "Sentier en forêt"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&h=800&fit=crop",
-                alt: "Lac de montagne"
-            }
-        ]
+    "recherche-chataignes": {
+        title: "À la recherche des châtaignes",
+        date: "Octobre 2024",
+        icon: "🌰",
+        photos: generatePhotos("photos-a-la-recherche-des-chataignes", 6, "Recherche des châtaignes")
     },
-    evenement: {
-        title: "Événement Spécial",
-        date: "Juillet 2024",
-        photos: [
-            {
-                url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200&h=800&fit=crop",
-                alt: "Fête en soirée"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1200&h=800&fit=crop",
-                alt: "Décoration festive"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1464207687429-7505649dae38?w=1200&h=800&fit=crop",
-                alt: "Moments de joie"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=1200&h=800&fit=crop",
-                alt: "Célébration"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200&h=800&fit=crop",
-                alt: "Ambiance festive"
-            }
-        ]
+    "anniversaires": {
+        title: "Anniversaires",
+        date: "Toute l'année",
+        icon: "🎂",
+        photos: generatePhotos("photos-anniversaires", 5, "Fête d'anniversaire")
     },
-    nature: {
-        title: "Nature & Paysages",
+    "atelier-snoezelen": {
+        title: "Atelier Snoezelen",
+        date: "Novembre 2024",
+        icon: "✨",
+        photos: generatePhotos("photos-atelier-Snoezelen", 5, "Atelier sensoriel")
+    },
+    "atelier-cuisine": {
+        title: "Atelier Cuisine",
+        date: "Septembre 2024",
+        icon: "👨‍🍳",
+        photos: generatePhotos("photos-atelier-cuisine", 6, "Atelier culinaire")
+    },
+    "jardin-biodiversite": {
+        title: "Jardin de Biodiversité",
         date: "Juin 2024",
-        photos: [
-            {
-                url: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&h=800&fit=crop",
-                alt: "Sentier forestier"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&h=800&fit=crop",
-                alt: "Lac paisible"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop",
-                alt: "Montagne majestueuse"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1200&h=800&fit=crop",
-                alt: "Prairie fleurie"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200&h=800&fit=crop",
-                alt: "Cascade naturelle"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1200&h=800&fit=crop",
-                alt: "Côte sauvage"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=1200&h=800&fit=crop",
-                alt: "Aurore boréale"
-            }
-        ]
+        icon: "🦋",
+        photos: generatePhotos("photos-atelier-jardin-a-lespace-de-biodiversite", 3, "Espace de biodiversité")
     },
-    portraits: {
-        title: "Portraits",
+    "jardin-sensoriel": {
+        title: "Jardin Sensoriel",
         date: "Mai 2024",
-        photos: [
-            {
-                url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=800&fit=crop",
-                alt: "Portrait masculin"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=1200&h=800&fit=crop",
-                alt: "Portrait féminin"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=1200&h=800&fit=crop",
-                alt: "Sourire radieux"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=1200&h=800&fit=crop",
-                alt: "Expression naturelle"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=1200&h=800&fit=crop",
-                alt: "Portrait artistique"
-            }
-        ]
+        icon: "🌿",
+        photos: generatePhotos("photos-atelier-jardin-sensoriel", 7, "Jardin sensoriel")
     },
-    architecture: {
-        title: "Architecture",
+    "carnaval": {
+        title: "Carnaval",
+        date: "Février 2024",
+        icon: "🎭",
+        photos: generatePhotos("photos-carnaval", 4, "Fête de carnaval")
+    },
+    "chasse-oeufs": {
+        title: "Chasse aux Œufs",
         date: "Avril 2024",
-        photos: [
-            {
-                url: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&h=800&fit=crop",
-                alt: "Architecture moderne"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=1200&h=800&fit=crop",
-                alt: "Détail architectural"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&h=800&fit=crop",
-                alt: "Bâtiment historique"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1f?w=1200&h=800&fit=crop",
-                alt: "Design contemporain"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1200&h=800&fit=crop",
-                alt: "Structure géométrique"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=1200&h=800&fit=crop",
-                alt: "Façade impressionnante"
-            }
-        ]
+        icon: "🥚",
+        photos: generatePhotos("photos-chasse-aux-oeufs", 18, "Chasse aux œufs de Pâques")
     },
-    street: {
-        title: "Street Photography",
+    "balade-parc": {
+        title: "Balade au Parc",
+        date: "Juillet 2024",
+        icon: "🌳",
+        photos: generatePhotos("photos-en-balade-au-parc", 15, "Promenade au parc")
+    },
+    "eveil-musical": {
+        title: "Éveil Musical",
         date: "Mars 2024",
-        photos: [
-            {
-                url: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&h=800&fit=crop",
-                alt: "Scène de rue"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1497436072909-f5e4be1dffda?w=1200&h=800&fit=crop",
-                alt: "Vie urbaine"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1494522855154-9297ac14b55f?w=1200&h=800&fit=crop",
-                alt: "Instant capturé"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1519810755548-39cd217da494?w=1200&h=800&fit=crop",
-                alt: "Mouvement urbain"
-            },
-            {
-                url: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=1200&h=800&fit=crop",
-                alt: "Lumière de ville"
-            }
-        ]
+        icon: "🎵",
+        photos: generatePhotos("photos-eveil-musical", 18, "Séance d'éveil musical")
+    },
+    "ferme-villetain": {
+        title: "Ferme de Villetain",
+        date: "Juin 2024",
+        icon: "🚜",
+        photos: generatePhotos("photos-ferme-de-villetain", 5, "Visite à la ferme")
+    },
+    "halloween": {
+        title: "Halloween",
+        date: "Octobre 2024",
+        icon: "🎃",
+        photos: generatePhotos("photos-haloween", 4, "Fête d'Halloween")
+    },
+    "jeux": {
+        title: "Jeux",
+        date: "Toute l'année",
+        icon: "🎲",
+        photos: generatePhotos("photos-jeux", 18, "Temps de jeux")
+    },
+    "motricite": {
+        title: "Motricité",
+        date: "Septembre 2024",
+        icon: "🤸",
+        photos: generatePhotos("photos-motricite", 16, "Exercices de motricité")
+    },
+    "noel": {
+        title: "Noël",
+        date: "Décembre 2024",
+        icon: "🎄",
+        photos: generatePhotos("photos-noel", 9, "Fêtes de Noël")
+    },
+    "pique-niques": {
+        title: "Pique-niques",
+        date: "Été 2024",
+        icon: "🧺",
+        photos: generatePhotos("photos-pique-niques", 4, "Pique-nique")
+    },
+    "raconte-tapis": {
+        title: "Raconte Tapis",
+        date: "Mai 2024",
+        icon: "📚",
+        photos: generatePhotos("photos-raconte-tapis", 3, "Séance raconte tapis")
+    },
+    "spectacle-noel": {
+        title: "Spectacle de Noël",
+        date: "Décembre 2024",
+        icon: "🎪",
+        photos: generatePhotos("photos-spectacle-de-noel-et-de-fin-dannee", 8, "Spectacle de fin d'année")
+    },
+    "spectacle-remi": {
+        title: "Spectacle de Rémi",
+        date: "Novembre 2024",
+        icon: "🎭",
+        photos: generatePhotos("photos-spectacle-de-remi", 8, "Spectacle de Rémi")
+    },
+    "yoga": {
+        title: "Yoga",
+        date: "Août 2024",
+        icon: "🧘",
+        photos: generatePhotos("photos-yoga", 13, "Séance de yoga")
     }
 };
+
+// Fonction pour générer automatiquement les photos d'un album
+function generatePhotos(folderName, count, altBase) {
+    const photos = [];
+    for (let i = 1; i <= count; i++) {
+        photos.push({
+            url: `../assets/${folderName}/${folderName}${i}.png`,
+            alt: `${altBase} - Photo ${i}`
+        });
+    }
+    return photos;
+}
 
 // Variables globales
 let currentAlbum = null;
@@ -402,13 +362,13 @@ function animateAlbumCards() {
             card.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
             card.style.opacity = '1';
             card.style.transform = 'translateY(0)';
-        }, index * 100);
+        }, index * 50); // Réduction du délai pour plus de fluidité
     });
 }
 
 // Gestion du redimensionnement de la fenêtre
 window.addEventListener('resize', function() {
-    if (modal.style.display === 'block') {
+    if (modal && modal.style.display === 'block') {
         // Recalcul de la taille de l'image dans la modale
         updateCarouselDisplay();
     }
@@ -435,28 +395,80 @@ document.addEventListener('DOMContentLoaded', function() {
 let touchStartX = 0;
 let touchStartY = 0;
 
-modal.addEventListener('touchstart', function(e) {
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-}, { passive: true });
+if (modal) {
+    modal.addEventListener('touchstart', function(e) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+    }, { passive: true });
 
-modal.addEventListener('touchend', function(e) {
-    if (!currentAlbum) return;
-    
-    const touchEndX = e.changedTouches[0].clientX;
-    const touchEndY = e.changedTouches[0].clientY;
-    
-    const diffX = touchStartX - touchEndX;
-    const diffY = touchStartY - touchEndY;
-    
-    // Vérifier que c'est un swipe horizontal (et non vertical)
-    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
-        if (diffX > 0) {
-            // Swipe vers la gauche - photo suivante
-            nextPhoto();
-        } else {
-            // Swipe vers la droite - photo précédente
-            previousPhoto();
+    modal.addEventListener('touchend', function(e) {
+        if (!currentAlbum) return;
+        
+        const touchEndX = e.changedTouches[0].clientX;
+        const touchEndY = e.changedTouches[0].clientY;
+        
+        const diffX = touchStartX - touchEndX;
+        const diffY = touchStartY - touchEndY;
+        
+        // Vérifier que c'est un swipe horizontal (et non vertical)
+        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+            if (diffX > 0) {
+                // Swipe vers la gauche - photo suivante
+                nextPhoto();
+            } else {
+                // Swipe vers la droite - photo précédente
+                previousPhoto();
+            }
         }
-    }
-}, { passive: true });
+    }, { passive: true });
+}
+
+// Gestion des erreurs d'images
+function handleImageError(img) {
+    img.style.display = 'none';
+    console.warn(`Image non trouvée: ${img.src}`);
+}
+
+// Ajout d'un gestionnaire d'erreurs pour toutes les images
+document.addEventListener('DOMContentLoaded', function() {
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        img.addEventListener('error', function() {
+            handleImageError(this);
+        });
+    });
+});
+
+// Fonction pour créer dynamiquement un album (utile pour les futures extensions)
+function createAlbumCard(albumId, albumData) {
+    const card = document.createElement('div');
+    card.className = 'album-card';
+    card.dataset.album = albumId;
+    card.dataset.date = new Date().toISOString().split('T')[0]; // Date actuelle par défaut
+    
+    card.innerHTML = `
+        <div class="album-thumbnail">
+            <div class="thumbnail-grid">
+                <img src="${albumData.photos[0]?.url || ''}" alt="${albumData.photos[0]?.alt || ''}" class="main-thumb">
+                <img src="${albumData.photos[1]?.url || albumData.photos[0]?.url || ''}" alt="${albumData.photos[1]?.alt || ''}" class="mini-thumb">
+                <img src="${albumData.photos[2]?.url || albumData.photos[0]?.url || ''}" alt="${albumData.photos[2]?.alt || ''}" class="mini-thumb">
+                <img src="${albumData.photos[3]?.url || albumData.photos[0]?.url || ''}" alt="${albumData.photos[3]?.alt || ''}" class="mini-thumb">
+            </div>
+            <div class="album-overlay">
+                <div class="photo-count">${albumData.photos.length} photos</div>
+                <div class="album-icon">${albumData.icon || '📷'}</div>
+            </div>
+        </div>
+        <div class="album-info">
+            <h4>${albumData.title}</h4>
+            <span class="album-date">${albumData.date}</span>
+        </div>
+    `;
+    
+    // Ajout du gestionnaire d'événement
+    card.addEventListener('click', function() {
+        openModal(albumId);
+    });
+    
+    return card;
+}
