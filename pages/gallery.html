@@ -3,94 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Site - Galerie Photos</title>
+    <title>Mon Site - Galerie</title>
     <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/gallery.css">
 </head>
-<body class="member-area">
-    <header class="member-header">
+<body>
+    <header>
         <div class="logo">
-            <h1>Espace Membre</h1>
+            <h1>Mon Site</h1>
         </div>
-        <nav class="member-nav">
+        <nav>
             <ul>
-                <li><a href="dashboard.html">Tableau de bord</a></li>
-                <li><a href="gallery.html" class="active">Galerie Photos</a></li>
-                <li><a href="documents.html">Documents</a></li>
-                <li><a href="profile.html">Mon Profil</a></li>
-                <li><a href="#" id="logout-btn" class="logout-btn">Déconnexion</a></li>
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="./gallery.html" class="active">Gallerie</a></li>
+                <li><a href="./disponibilite.html">Disponibilités</a></li>
+                <li><a href="./agenda.html">Agenda</a></li>
+                <li><a href="./contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <section class="gallery-container">
-        <div class="gallery-header">
-            <h2>Galerie Photos</h2>
-            <div class="gallery-actions">
-                <select id="album-select">
-                    <option value="all">Tous les albums</option>
-                    <option value="album1">Album 1</option>
-                    <option value="album2">Album 2</option>
-                    <option value="album3">Album 3</option>
-                </select>
-                <button id="upload-btn" class="cta-button">Ajouter des photos</button>
-            </div>
-        </div>
-
-        <div id="photo-upload-modal" class="modal">
-            <div class="modal-content">
-                <span class="close-modal">&times;</span>
-                <h3>Ajouter des photos</h3>
-                <form id="upload-form">
-                    <div class="form-group">
-                        <label for="file-upload">Sélectionner des fichiers</label>
-                        <input type="file" id="file-upload" name="photos" multiple accept="image/*">
-                    </div>
-                    <div class="form-group">
-                        <label for="album">Album</label>
-                        <select id="album" name="album">
-                            <option value="album1">Album 1</option>
-                            <option value="album2">Album 2</option>
-                            <option value="album3">Album 3</option>
-                            <option value="new">Nouvel album...</option>
-                        </select>
-                    </div>
-                    <div class="form-group" id="new-album-group" style="display:none;">
-                        <label for="new-album-name">Nom du nouvel album</label>
-                        <input type="text" id="new-album-name" name="new-album-name">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="submit-btn">Télécharger</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div class="gallery-grid" id="photo-gallery">
-            <!-- Les images seront insérées ici via JavaScript -->
-        </div>
-
-        <div id="photo-viewer" class="modal">
-            <div class="modal-content photo-viewer-content">
-                <span class="close-modal">&times;</span>
-                <img id="enlarged-photo" src="" alt="Photo agrandie">
-                <div class="photo-controls">
-                    <button id="prev-photo">&lt;</button>
-                    <button id="next-photo">&gt;</button>
-                </div>
-                <div class="photo-info">
-                    <h4 id="photo-title">Titre de la photo</h4>
-                    <p id="photo-date">Date: </p>
-                    <p id="photo-album">Album: </p>
-                </div>
-            </div>
+    <section class="page-hero">
+        <div class="hero-content">
+            <h2>Notre Galerie Photo</h2>
+            <p>Découvrez nos plus beaux moments capturés en images</p>
         </div>
     </section>
 
-    <footer class="member-footer">
-        <p>&copy; 2025 Mon Site. Tous droits réservés.</p>
-        <p><a href="index.html">Retour au site public</a></p>
+    <main class="gallery-main">
+        <div class="gallery-container">
+            <div class="gallery-header">
+                <h3>Albums Photos</h3>
+                <div class="gallery-controls">
+                    <select id="sortSelect">
+                        <option value="recent">Plus récents</option>
+                        <option value="alphabetical">Alphabétique</option>
+                        <option value="popular">Populaires</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="albums-grid" id="albumsGrid">
+                <!-- Album 1 -->
+                <div class="album-card" data-album="vacances" data-date="2024-08-01">
+                    <div class="album-thumbnail">
+                        <div class="thumbnail-grid">
+                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=300&fit=crop" alt="Photo 1" class="main-thumb">
+                            <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=150&h=150&fit=crop" alt="Photo 2" class="mini-thumb">
+                            <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=150&h=150&fit=crop" alt="Photo 3" class="mini-thumb">
+                            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=150&h=150&fit=crop" alt="Photo 4" class="mini-thumb">
+                        </div>
+                        <div class="album-overlay">
+                            <div class="photo-count">24 photos</div>
+                            <div class="album-icon">📸</div>
+                        </div>
+                    </div>
+                    <div class="album-info">
+                        <h4>Vacances d'été</h4>
+                        <span class="album-date">Août 2024</span>
+                    </div>
+                </div>
+
+                <!-- Album 2 -->
+                <div class="album-card" data-album="evenement" data-date="2024-07-15">
+                    <div class="album-thumbnail">
+                        <div class="thumbnail-grid">
+                            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=300&h=300&fit=crop" alt="Photo 1" class="main-thumb">
+                            <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=150&h=150&fit=crop" alt="Photo 2" class="mini-thumb">
+                            <img src="https://images.unsplash.com/photo-1464207687429-7505649dae38?w=150&h=150&fit=crop" alt="Photo 3" class="mini-thumb">
+                            <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=150&h=150&fit=crop" alt="Photo 4" class="mini-thumb">
+                        </div>
+                        <div class="album-overlay">
+                            <div class="photo-count">18 photos</div>
+                            <div class="album-icon">🎉</div>
+                        </div>
+                    </div>
+                    <div class="album-info">
+                        <h4>Événement Spécial</h4>
+                        <span class="album-date">Juillet 2024</span>
+                    </div>
+                </div>
+
+                <!-- Album 3 -->
+                <div class="album-card" data-album="nature" data-date="2024-06-20">
+                    <div class="album-thumbnail">
+                        <div class="thumbnail-grid">
+                            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300&h=300&fit=crop" alt="Photo 1" class="main-thumb">
+                            <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=150&h=150&fit=crop" alt="Photo 2" class="mini-thumb">
+                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=150&h=150&fit=crop" alt="Photo 3" class="mini-thumb">
+                            <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=150&h=150&fit=crop" alt="Photo 4" class="mini-thumb">
+                        </div>
+                        <div class="album-overlay">
+                            <div class="photo-count">32 photos</div>
+                            <div class="album-icon">🌿</div>
+                        </div>
+                    </div>
+                    <div class="album-info">
+                        <h4>Nature & Paysages</h4>
+                        <span class="album-date">Juin 2024</span>
+                    </div>
+                </div>
+
+                <!-- Album 4 -->
+                <div class="album-card" data-album="portraits" data-date="2024-05-10">
+                    <div class="album-thumbnail">
+                        <div class="thumbnail-grid">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop" alt="Photo 1" class="main-thumb">
+                            <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=150&h=150&fit=crop" alt="Photo 2" class="mini-thumb">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop" alt="Photo 3" class="mini-thumb">
+                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop" alt="Photo 4" class="mini-thumb">
+                        </div>
+                        <div class="album-overlay">
+                            <div class="photo-count">15 photos</div>
+                            <div class="album-icon">👥</div>
+                        </div>
+                    </div>
+                    <div class="album-info">
+                        <h4>Portraits</h4>
+                        <span class="album-date">Mai 2024</span>
+                    </div>
+                </div>
+
+                <!-- Album 5 -->
+                <div class="album-card" data-album="architecture" data-date="2024-04-05">
+                    <div class="album-thumbnail">
+                        <div class="thumbnail-grid">
+                            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=300&h=300&fit=crop" alt="Photo 1" class="main-thumb">
+                            <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=150&h=150&fit=crop" alt="Photo 2" class="mini-thumb">
+                            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=150&h=150&fit=crop" alt="Photo 3" class="mini-thumb">
+                            <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1f?w=150&h=150&fit=crop" alt="Photo 4" class="mini-thumb">
+                        </div>
+                        <div class="album-overlay">
+                            <div class="photo-count">27 photos</div>
+                            <div class="album-icon">🏢</div>
+                        </div>
+                    </div>
+                    <div class="album-info">
+                        <h4>Architecture</h4>
+                        <span class="album-date">Avril 2024</span>
+                    </div>
+                </div>
+
+                <!-- Album 6 -->
+                <div class="album-card" data-album="street" data-date="2024-03-12">
+                    <div class="album-thumbnail">
+                        <div class="thumbnail-grid">
+                            <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=300&h=300&fit=crop" alt="Photo 1" class="main-thumb">
+                            <img src="https://images.unsplash.com/photo-1497436072909-f5e4be1dffda?w=150&h=150&fit=crop" alt="Photo 2" class="mini-thumb">
+                            <img src="https://images.unsplash.com/photo-1494522855154-9297ac14b55f?w=150&h=150&fit=crop" alt="Photo 3" class="mini-thumb">
+                            <img src="https://images.unsplash.com/photo-1519810755548-39cd217da494?w=150&h=150&fit=crop" alt="Photo 4" class="mini-thumb">
+                        </div>
+                        <div class="album-overlay">
+                            <div class="photo-count">21 photos</div>
+                            <div class="album-icon">🚶</div>
+                        </div>
+                    </div>
+                    <div class="album-info">
+                        <h4>Street Photography</h4>
+                        <span class="album-date">Mars 2024</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modale pour le carrousel -->
+    <div id="photoModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h3 id="modalAlbumTitle">Nom de l'album</h3>
+                <div class="photo-counter">
+                    <span id="currentPhoto">1</span> / <span id="totalPhotos">1</span>
+                </div>
+            </div>
+            <div class="carousel-container">
+                <button class="carousel-btn prev-btn" id="prevBtn">‹</button>
+                <div class="carousel-content">
+                    <img id="modalImage" src="" alt="Photo">
+                </div>
+                <button class="carousel-btn next-btn" id="nextBtn">›</button>
+            </div>
+            <div class="carousel-dots" id="carouselDots"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>À propos</h4>
+                <p>Notre entreprise propose des services de qualité depuis 2010.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: contact@monsite.fr</p>
+                <p>Téléphone: 01 23 45 67 89</p>
+            </div>
+            <div class="footer-section">
+                <h4>Liens utiles</h4>
+                <ul>
+                    <li><a href="../mentions-legales.html">Mentions légales</a></li>
+                    <li><a href="../politique-confidentialite.html">Politique de confidentialité</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Mon Site. Tous droits réservés.</p>
+        </div>
     </footer>
 
-    <script src="gallery-script.js"></script>
+    <script src="../script/gallery.js"></script>
 </body>
 </html>
