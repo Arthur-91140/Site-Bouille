@@ -15,7 +15,7 @@ const albumsData = {
     "atelier-snoezelen": {
         title: "Atelier Snoezelen",
         date: "Toute l'année",
-        icon: "✨",
+        icon: "🧸",
         photos: generatePhotos("photos-atelier-Snoezelen", 5, "Atelier sensoriel")
     },
     "atelier-cuisine": {
@@ -51,7 +51,7 @@ const albumsData = {
     "balade-parc": {
         title: "Balades au Parc",
         date: "Toute l'année",
-        icon: "🌳",
+        icon: "🛝",
         photos: generatePhotos("photos-en-balade-au-parc", 15, "Promenade au parc")
     },
     "eveil-musical": {
@@ -75,7 +75,7 @@ const albumsData = {
     "jeux": {
         title: "Jeux",
         date: "Toute l'année",
-        icon: "🎲",
+        icon: "🏐",
         photos: generatePhotos("photos-jeux", 18, "Temps de jeux")
     },
     "motricite": {
@@ -99,19 +99,19 @@ const albumsData = {
     "raconte-tapis": {
         title: "Raconte Tapis",
         date: "Mai 2025",
-        icon: "📚",
+        icon: "📖",
         photos: generatePhotos("photos-raconte-tapis", 3, "Séance raconte tapis")
     },
     "spectacle-noel": {
         title: "Spectacle de Noël",
         date: "Décembre 2024",
-        icon: "🎪",
+        icon: "🎅",
         photos: generatePhotos("photos-spectacle-de-noel-et-de-fin-dannee", 8, "Spectacle de fin d'année")
     },
     "spectacle-remi": {
         title: "Spectacle de Rémi",
         date: "Avril 2025",
-        icon: "🎭",
+        icon: "👨🏻‍🎤",
         photos: generatePhotos("photos-spectacle-de-remi", 8, "Spectacle de Rémi")
     },
     "yoga": {
