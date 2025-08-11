@@ -14,57 +14,57 @@ const albumsData = {
     },
     "atelier-snoezelen": {
         title: "Atelier Snoezelen",
-        date: "Novembre 2024",
+        date: "Toute l'année",
         icon: "✨",
         photos: generatePhotos("photos-atelier-Snoezelen", 5, "Atelier sensoriel")
     },
     "atelier-cuisine": {
         title: "Atelier Cuisine",
-        date: "Septembre 2024",
+        date: "Toute l'année",
         icon: "👨‍🍳",
         photos: generatePhotos("photos-atelier-cuisine", 6, "Atelier culinaire")
     },
-    "jardin-biodiversite": {
-        title: "Jardin de Biodiversité",
-        date: "Juin 2024",
+    "espace-biodiversite": {
+        title: "Espace de Biodiversité",
+        date: "Mars 2025",
         icon: "🦋",
         photos: generatePhotos("photos-atelier-jardin-a-lespace-de-biodiversite", 3, "Espace de biodiversité")
     },
     "jardin-sensoriel": {
         title: "Jardin Sensoriel",
-        date: "Mai 2024",
+        date: "Septembre 2025",
         icon: "🌿",
         photos: generatePhotos("photos-atelier-jardin-sensoriel", 7, "Jardin sensoriel")
     },
     "carnaval": {
         title: "Carnaval",
-        date: "Février 2024",
+        date: "Février 2025",
         icon: "🎭",
         photos: generatePhotos("photos-carnaval", 4, "Fête de carnaval")
     },
     "chasse-oeufs": {
         title: "Chasse aux Œufs",
-        date: "Avril 2024",
+        date: "Avril 2025",
         icon: "🥚",
         photos: generatePhotos("photos-chasse-aux-oeufs", 18, "Chasse aux œufs de Pâques")
     },
     "balade-parc": {
-        title: "Balade au Parc",
-        date: "Juillet 2024",
+        title: "Balades au Parc",
+        date: "Toute l'année",
         icon: "🌳",
         photos: generatePhotos("photos-en-balade-au-parc", 15, "Promenade au parc")
     },
     "eveil-musical": {
         title: "Éveil Musical",
-        date: "Mars 2024",
+        date: "Toute l'année",
         icon: "🎵",
         photos: generatePhotos("photos-eveil-musical", 18, "Séance d'éveil musical")
     },
-    "ferme-villetain": {
-        title: "Ferme de Villetain",
-        date: "Juin 2024",
+    "ferme-viltain": {
+        title: "Ferme de Viltain",
+        date: "Avril 2025",
         icon: "🚜",
-        photos: generatePhotos("photos-ferme-de-villetain", 5, "Visite à la ferme")
+        photos: generatePhotos("photos-ferme-de-viltain", 5, "Visite à la ferme")
     },
     "halloween": {
         title: "Halloween",
@@ -80,7 +80,7 @@ const albumsData = {
     },
     "motricite": {
         title: "Motricité",
-        date: "Septembre 2024",
+        date: "Toute l'année",
         icon: "🤸",
         photos: generatePhotos("photos-motricite", 16, "Exercices de motricité")
     },
@@ -98,7 +98,7 @@ const albumsData = {
     },
     "raconte-tapis": {
         title: "Raconte Tapis",
-        date: "Mai 2024",
+        date: "Mai 2025",
         icon: "📚",
         photos: generatePhotos("photos-raconte-tapis", 3, "Séance raconte tapis")
     },
@@ -110,13 +110,13 @@ const albumsData = {
     },
     "spectacle-remi": {
         title: "Spectacle de Rémi",
-        date: "Novembre 2024",
+        date: "Avril 2025",
         icon: "🎭",
         photos: generatePhotos("photos-spectacle-de-remi", 8, "Spectacle de Rémi")
     },
     "yoga": {
         title: "Yoga",
-        date: "Août 2024",
+        date: "Mai 2025",
         icon: "🧘",
         photos: generatePhotos("photos-yoga", 13, "Séance de yoga")
     }
