@@ -34,6 +34,7 @@
         <div class="gallery-container">
             <div class="gallery-header">
                 <h3>Albums Photos</h3>
+                <!--
                 <div class="gallery-controls">
                     <select id="sortSelect">
                         <option value="recent">Plus récents</option>
@@ -41,6 +42,7 @@
                         <option value="popular">Populaires</option>
                     </select>
                 </div>
+                -->
             </div>
 
             <div class="albums-grid" id="albumsGrid">
@@ -450,12 +452,12 @@
     <!-- Modale pour le carrousel -->
     <div id="photoModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
             <div class="modal-header">
                 <h3 id="modalAlbumTitle">Nom de l'album</h3>
                 <div class="photo-counter">
                     <span id="currentPhoto">1</span> / <span id="totalPhotos">1</span>
                 </div>
+                <span class="close">&times;</span>
             </div>
             <div class="carousel-container">
                 <button class="carousel-btn prev-btn" id="prevBtn">‹</button>
