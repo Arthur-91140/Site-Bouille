@@ -309,14 +309,14 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+
 .close {
-    position: absolute;
-    right: 2rem;
-    top: 50%;
-    transform: translateY(-50%);
+    position: fixed;
+    right: 30px;
+    top: 30px;
     color: #fff;
-    font-size: 3rem;
-    font-weight: bold;
+    font-size: 2.5rem;
+    font-weight: 300;
     cursor: pointer;
     z-index: 2001;
     width: 50px;
@@ -329,12 +329,14 @@
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    line-height: 1;
 }
 
 .close:hover {
     background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-50%) scale(1.1);
+    transform: rotate(90deg) scale(1.1);
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
 /* Carrousel */
