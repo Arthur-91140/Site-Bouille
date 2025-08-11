@@ -88,6 +88,8 @@
 .contact-card p {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 /* Container pour le formulaire de contact */
