@@ -237,6 +237,10 @@ function setupModalEvents() {
                 case 'Escape':
                     closeModal();
                     break;
+                case ' ':
+                    e.preventDefault(); // Empêche le défilement de la page
+                    closeModal();
+                    break;
                 case 'ArrowLeft':
                     previousPhoto();
                     break;
