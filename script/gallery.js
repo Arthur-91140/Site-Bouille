@@ -102,10 +102,10 @@ const albumsData = {
         icon: "📖",
         photos: generatePhotos("photos-raconte-tapis", 3, "Séance raconte tapis")
     },
-    "spectacle-noel": {
-        title: "Spectacle de Noël",
-        date: "Décembre 2024",
-        icon: "🎅",
+    "spectacles": {
+        title: "Spectacles",
+        date: "Décembre 2024 et Juin 2025",
+        icon: "🤩",
         photos: generatePhotos("photos-spectacle-de-noel-et-de-fin-dannee", 8, "Spectacle de fin d'année")
     },
     "spectacle-remi": {
