@@ -127,13 +127,13 @@
 }
 
 .dispo-badge.immediate {
-    background: linear-gradient(135deg, #a9f5b3 0%, #58e8b8 100%);
-    box-shadow: 0 5px 15px rgba(88, 232, 184, 0.3);
+    background: linear-gradient(135deg, #a9f5b3 0%, #58e8b8 100%) !important;
+    box-shadow: 0 5px 15px rgba(88, 232, 184, 0.3) !important;
 }
 
 .dispo-badge.unavailable {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ff4d79 100%);
-    box-shadow: 0 5px 15px rgba(255, 77, 121, 0.3);
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff4d79 100%) !important;
+    box-shadow: 0 5px 15px rgba(255, 77, 121, 0.3) !important;
 }
 
 .dispo-details {
