@@ -131,6 +131,11 @@
     box-shadow: 0 5px 15px rgba(88, 232, 184, 0.3);
 }
 
+.dispo-badge.unavailable {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff4d79 100%);
+    box-shadow: 0 5px 15px rgba(255, 77, 121, 0.3);
+}
+
 .dispo-details {
     font-size: 1.1rem;
     color: #555;
