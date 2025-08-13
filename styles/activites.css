@@ -1,0 +1,563 @@
+/* Styles spécifiques pour la page Activités et Adhésion */
+
+/* Hero section avec logo */
+.hero-activites {
+    background: linear-gradient(135deg, #ff4d79 0%, #ff6b6b 70%, #ff9d6c 100%);
+    color: #fff;
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-activites::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    opacity: 0.8;
+    animation: pulse 15s infinite linear;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.logo-container {
+    margin-bottom: 2rem;
+}
+
+.hero-logo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.hero-logo:hover {
+    transform: scale(1.05);
+}
+
+.hero-activites h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    letter-spacing: -0.5px;
+}
+
+.hero-activites p {
+    font-size: 1.3rem;
+    opacity: 0.95;
+    font-weight: 300;
+}
+
+/* Section de présentation */
+.presentation-section {
+    padding: 4rem 0;
+    background: #fff;
+}
+
+.intro-text {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.intro-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+    background: linear-gradient(to right, #ff4d79, #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #ff4d79;
+}
+
+.intro-text p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #666;
+    max-width: 800px;
+    margin: 0 auto 1rem;
+}
+
+/* Grille des activités */
+.activites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.activite-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border-left: 5px solid transparent;
+}
+
+.activite-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    z-index: 1;
+}
+
+.activite-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.activite-card.motricite {
+    border-left-color: #ff4d79;
+}
+
+.activite-card.musique {
+    border-left-color: #4facfe;
+}
+
+.activite-card.yoga {
+    border-left-color: #58e8b8;
+}
+
+.activite-card.danse {
+    border-left-color: #ffcf5c;
+}
+
+.activite-card.snoezelen {
+    border-left-color: #a78bfa;
+}
+
+.activite-card.mediation {
+    border-left-color: #fb7185;
+}
+
+.activite-card.spectacles {
+    border-left-color: #34d399;
+}
+
+.activite-card.evenements {
+    border-left-color: #fbbf24;
+}
+
+.activite-emoji {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.activite-content {
+    position: relative;
+    z-index: 2;
+}
+
+.activite-content h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.activite-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.lieu {
+    display: inline-block;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    color: #495057;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Informations sur les lieux */
+.lieux-info {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.lieux-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.lieux-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.lieu-item {
+    background: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Section tarifs */
+.tarifs-section {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 4rem 0;
+}
+
+.tarifs-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    font-weight: 800;
+    background: linear-gradient(to right, #ff4d79, #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #ff4d79;
+}
+
+.tarifs-container {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 0 auto;
+    max-width: 900px;
+}
+
+.tarifs-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+}
+
+.tarifs-table th {
+    background: linear-gradient(135deg, #ff4d79, #ff6b6b);
+    color: #fff;
+    padding: 1.5rem 1rem;
+    font-weight: 700;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.activites-col {
+    width: 50%;
+    text-align: left !important;
+}
+
+.decouverte-col, .engagee-col {
+    width: 25%;
+}
+
+.tarifs-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #f1f3f4;
+    vertical-align: top;
+}
+
+.activite-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.activite-name ul {
+    margin-top: 0.5rem;
+    padding-left: 1.5rem;
+}
+
+.activite-name li {
+    color: #666;
+    font-weight: 400;
+    margin-bottom: 0.3rem;
+}
+
+.check {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #22c55e;
+    font-weight: bold;
+}
+
+.cross {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #ef4444;
+    font-weight: bold;
+}
+
+.periodes-row td {
+    background: #f8f9fa;
+    font-weight: 500;
+}
+
+.periodes-info {
+    text-align: center;
+    color: #666;
+    line-height: 1.6;
+}
+
+.periodes-engagee {
+    background: #e9ecef !important;
+    color: #6c757d;
+    text-align: center;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.periodes-info em,
+.periodes-engagee em {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.tarifs-row td {
+    background: linear-gradient(135deg, #fff5f5, #fef2f2);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.prix-decouverte {
+    text-align: center;
+    color: #dc2626;
+}
+
+.prix-engagee {
+    text-align: center;
+    color: #059669;
+}
+
+.activites-base {
+    background: #f9fafb;
+}
+
+/* Section contact adhésion */
+.contact-adhesion-section {
+    padding: 4rem 0;
+    background: #fff;
+}
+
+.contact-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.contact-intro h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+    background: linear-gradient(to right, #ff4d79, #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #ff4d79;
+}
+
+.contact-intro p {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    padding: 3rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #ff4d79;
+    box-shadow: 0 0 0 3px rgba(255, 77, 121, 0.1);
+    background-color: #fff;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+}
+
+.checkbox-item input[type="checkbox"],
+.checkbox-item input[type="radio"] {
+    width: auto;
+    margin-top: 0.2rem;
+    accent-color: #ff4d79;
+}
+
+.checkbox-item label {
+    margin-bottom: 0;
+    font-weight: 500;
+    cursor: pointer;
+    line-height: 1.5;
+}
+
+.submit-btn {
+    background: linear-gradient(to right, #ff4d79, #ff6b6b);
+    color: #fff;
+    padding: 1.2rem 2rem;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(255, 77, 121, 0.3);
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(255, 77, 121, 0.4);
+}
+
+.form-note {
+    text-align: center;
+    margin-top: 1rem;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* Messages de retour */
+.form-message {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.form-message.success {
+    background-color: #d1fae5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+.form-message.error {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-activites h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-logo {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .intro-text h2 {
+        font-size: 2rem;
+    }
+    
+    .activites-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .lieux-details {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .tarifs-table th,
+    .tarifs-table td {
+        padding: 0.8rem 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .contact-form-container {
+        padding: 2rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-activites {
+        padding: 2rem 1rem;
+    }
+    
+    .tarifs-container {
+        margin: 0 1rem;
+    }
+    
+    .tarifs-table {
+        overflow-x: auto;
+    }
+    
+    .activites-col {
+        width: 60%;
+    }
+    
+    .decouverte-col, .engagee-col {
+        width: 20%;
+    }
+}
