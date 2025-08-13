@@ -76,7 +76,7 @@ $message
 ---
 Ce message a été envoyé depuis le formulaire de contact du site web.
 Adresse IP: " . $_SERVER['REMOTE_ADDR'] . "
-Date: " . date('Y-m-d H:i:s');
+Date (GMT +0): " . date('Y-m-d H:i:s');
 
 // Fonction pour envoyer l'email via SMTP
 function envoyerEmailSMTP($smtp_host, $smtp_port, $smtp_username, $smtp_password, $destinataire, $expediteur, $nom_expediteur, $sujet, $message) {
