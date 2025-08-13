@@ -84,6 +84,23 @@
                     <label for="consentement">J'accepte que mes données soient traitées conformément à la politique de confidentialité</label>
                 </div>
                 
+                <!-- Information reCAPTCHA (obligatoire selon les conditions d'utilisation de Google) -->
+                <div class="recaptcha-info">
+                    Ce site est protégé par reCAPTCHA et la 
+                    <a href="https://policies.google.com/privacy" target="_blank">Politique de confidentialité</a> et les 
+                    <a href="https://policies.google.com/terms" target="_blank">Conditions d'utilisation</a> de Google s'appliquent.
+                </div>
+                
+                <!-- OPTION 2: Badge reCAPTCHA explicite (décommenter si vous préférez cette approche) -->
+                <!-- 
+                <div style="text-align: center; margin: 15px 0;">
+                    <div style="display: inline-block; background: #f9f9f9; padding: 8px 12px; border-radius: 3px; border: 1px solid #ccc;">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzQiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCA3NCAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI5LjggMTcuNkMyOS44IDE3LjYgMjkuOCAxNy42IDI5LjggMTcuNkMyOS44IDE3LjYgMjkuOCAxNy42IDI5LjggMTcuNloiIGZpbGw9IiM0Mjg1RjQiLz4KPC9zdmc+" alt="reCAPTCHA" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;">
+                        <span style="font-size: 12px; color: #555;">Protégé par <strong>reCAPTCHA</strong></span>
+                    </div>
+                </div>
+                -->
+                
                 <!-- Message de statut -->
                 <div id="status" style="margin: 15px 0; text-align: center; font-weight: bold; min-height: 20px;"></div>
                 
@@ -158,6 +175,13 @@
         // Initialisation de reCAPTCHA quand la page est chargée
         grecaptcha.ready(function() {
             console.log('reCAPTCHA v3 initialisé sur la page de contact');
+            
+            // OPTION 1: Forcer l'affichage du badge (décommenter si souhaité)
+            // grecaptcha.render('recaptcha-badge', {
+            //     'sitekey': RECAPTCHA_SITE_KEY,
+            //     'badge': 'bottomright', // 'bottomright', 'bottomleft' ou 'inline'
+            //     'size': 'invisible'
+            // });
         });
 
         // Gestion du formulaire de contact avec reCAPTCHA
@@ -197,7 +221,7 @@
                     
                     // Envoyer les données au serveur
                     // IMPORTANT: Adaptez le chemin selon votre structure
-                    fetch('../script/process_contact.php', {
+                    fetch('../process_contact.php', {
                         method: 'POST',
                         body: formData
                     })
@@ -232,6 +256,33 @@
                 });
             });
         });
+        
+        // OPTION 3: Forcer l'affichage du badge Google (décommenter pour activer)
+        /*
+        window.onload = function() {
+            // Rendre le badge Google visible s'il est caché
+            const badge = document.querySelector('.grecaptcha-badge');
+            if (badge) {
+                badge.style.visibility = 'visible';
+                badge.style.opacity = '1';
+            }
+        };
+        */
+        
+        // OPTION 4: Créer un badge personnalisé
+        function showCustomRecaptchaBadge() {
+            const customBadge = document.createElement('div');
+            customBadge.innerHTML = `
+                <div style="position: fixed; bottom: 14px; right: 14px; background: white; padding: 6px 8px; border-radius: 3px; box-shadow: 0 2px 6px rgba(0,0,0,0.3); font-size: 12px; z-index: 1000;">
+                    <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 4px;">
+                    reCAPTCHA
+                </div>
+            `;
+            document.body.appendChild(customBadge.firstElementChild);
+        }
+        
+        // Décommenter la ligne suivante pour afficher le badge personnalisé
+        // showCustomRecaptchaBadge();
 
         // Fonction pour gérer les erreurs reCAPTCHA
         function onRecaptchaError() {
