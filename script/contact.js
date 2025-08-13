@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // Envoyer les données au serveur
-            fetch('./script/process_contact.php', {
+            fetch('./process_contact.php', {
                 method: 'POST',
                 body: formData
             })
