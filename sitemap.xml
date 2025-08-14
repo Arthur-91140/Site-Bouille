@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- Page d'accueil -->
+  <url>
+    <loc>https://www.lesptitesbouillesvillebonnaises.fr/</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Page d'accueil avec index.html -->
+  <url>
+    <loc>https://www.lesptitesbouillesvillebonnaises.fr/index.html</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Activités et Adhésion -->
+  <url>
+    <loc>https://www.lesptitesbouillesvillebonnaises.fr/pages/activites.html</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Galerie photos -->
+  <url>
+    <loc>https://www.lesptitesbouillesvillebonnaises.fr/pages/gallery.html</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Disponibilité des assistantes maternelles -->
+  <url>
+    <loc>https://www.lesptitesbouillesvillebonnaises.fr/pages/disponibilite.html</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Planning des activités -->
+  <url>
+    <loc>https://www.lesptitesbouillesvillebonnaises.fr/pages/agenda.html</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Page de contact -->
+  <url>
+    <loc>https://www.lesptitesbouillesvillebonnaises.fr/pages/contact.html</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Mentions légales -->
+  <url>
+    <loc>https://www.lesptitesbouillesvillebonnaises.fr/pages/mention-legale.html</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>
