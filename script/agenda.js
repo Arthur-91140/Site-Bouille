@@ -218,7 +218,6 @@ document.addEventListener('DOMContentLoaded', function() {
                             <span class="event-date-inline">${formatDateOnly(activity.date)}<p class="event-description">${activity.day.charAt(0).toUpperCase() + activity.day.slice(1)}</p></span>
                             <h5>${activity.activity}</h5>
                         </div>
-                        <p class="event-description">${activity.day.charAt(0).toUpperCase() + activity.day.slice(1)}</p>
                     </div>
                 `;
                 eventsList.appendChild(eventCard);
