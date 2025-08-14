@@ -212,10 +212,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     : formatDate(activity.date, activity.day);
 
                 eventCard.innerHTML = `
-                    <div class="event-indicator ${getActivityClass(activity.type)}"></div>
+
                     <div class="event-content">
                         <div class="event-title-line">
-                            <span class="event-date-inline">${formatDateOnly(activity.date)}</span>
+                            <span class="event-date-inline">${formatDateOnly(activity.date)}<p class="event-description">${activity.day.charAt(0).toUpperCase() + activity.day.slice(1)}</p></span>
                             <h5>${activity.activity}</h5>
                         </div>
                         <p class="event-description">${activity.day.charAt(0).toUpperCase() + activity.day.slice(1)}</p>
