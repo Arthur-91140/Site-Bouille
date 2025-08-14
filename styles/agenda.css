@@ -174,7 +174,7 @@
     border-left: 5px solid #58e8b8;
 }
 
-.event-card.meditation-event {
+.event-card.mediation-event {
     border-left: 5px solid #43cbff;
 }
 
@@ -231,7 +231,7 @@
     background: linear-gradient(to bottom, #a9f5b3, #58e8b8);
 }
 
-.meditation-event {
+.mediation-event {
     background: linear-gradient(to bottom, #43cbff, #4facfe);
 }
 
@@ -384,7 +384,7 @@
         border-top-color: #58e8b8;
     }
 
-    .event-card.meditation-event {
+    .event-card.mediation-event {
         border-top-color: #43cbff;
     }
 
