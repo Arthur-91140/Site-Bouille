@@ -187,9 +187,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Afficher chaque période
         Object.keys(activitiesByPeriod).sort().forEach(period => {
             const periodNames = {
-                1: '1ère Période - Du 08.09.2025 au 12.12.2025',
-                2: '2ème Période - Du 15.12.2025 au 03.04.2026',
-                3: '3ème Période - Du 06.04.2026 au 03.07.2026'
+                1: '1ère période - Du 08.09.2025 au 12.12.2025',
+                2: '2ème période - Du 15.12.2025 au 03.04.2026',
+                3: '3ème période - Du 06.04.2026 au 03.07.2026'
             };
 
             // En-tête de période
