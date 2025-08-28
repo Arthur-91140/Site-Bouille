@@ -5,9 +5,740 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Activités et Adhésion - Les P'tites Bouilles Villebonnaises</title>
     <link rel="icon" type="image/jpeg" href="../assets/logo.jpg">
-    <link rel="stylesheet" href="../styles/styles.css">
-    <link rel="stylesheet" href="../styles/activites.css">
-    <link rel="stylesheet" href="../styles/responsive.css">
+    <style>
+        /* Réinitialisation et styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        a:hover {
+            color: #ff4d79;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header ultra moderne */
+        header {
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+            padding: 1.2rem 2.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        header .logo h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #ff4d79, #ff6b6b, #ff9d6c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: #ff4d79;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        header nav ul {
+            display: flex;
+            align-items: center;
+        }
+
+        header nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        header nav ul li a {
+            padding: 0.5rem;
+            font-weight: 600;
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+
+        header nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(to right, #ff4d79, #ff6b6b);
+            transition: width 0.3s ease;
+        }
+
+        header nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        header nav ul li a.active::after {
+            width: 100%;
+        }
+
+        /* Hero section avec logo */
+        .hero-activites {
+            background: linear-gradient(135deg, #ff4d79 0%, #ff6b6b 70%, #ff9d6c 100%);
+            color: #fff;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-activites::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            opacity: 0.8;
+            animation: pulse 15s infinite linear;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-activites h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            letter-spacing: -0.5px;
+        }
+
+        .hero-activites p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        /* Section de présentation */
+        .presentation-section {
+            padding: 4rem 0;
+            background: #fff;
+        }
+
+        .intro-text {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .intro-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #ff4d79, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: #ff4d79;
+        }
+
+        .intro-text p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 1rem;
+        }
+
+        /* Grille des activités */
+        .activites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .activite-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-left: 5px solid transparent;
+        }
+
+        .activite-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            z-index: 1;
+        }
+
+        .activite-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .activite-card.motricite {
+            border-left-color: #ff4d79;
+        }
+
+        .activite-card.musique {
+            border-left-color: #4facfe;
+        }
+
+        .activite-card.yoga {
+            border-left-color: #58e8b8;
+        }
+
+        .activite-card.danse {
+            border-left-color: #ffcf5c;
+        }
+
+        .activite-card.snoezelen {
+            border-left-color: #a78bfa;
+        }
+
+        .activite-card.mediation {
+            border-left-color: #fb7185;
+        }
+
+        .activite-card.spectacles {
+            border-left-color: #34d399;
+        }
+
+        .activite-card.evenements {
+            border-left-color: #fbbf24;
+        }
+
+        .activite-emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .activite-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .activite-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .activite-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .lieu {
+            display: inline-block;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            color: #495057;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Informations sur les lieux */
+        .lieux-info {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: left;
+        }
+
+        .lieux-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+            text-align: center;
+        }
+
+        .lieux-details-text p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.2rem;
+            text-align: justify;
+        }
+
+        .lieux-details-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .lieux-details-text strong {
+            color: #333;
+            font-weight: 600;
+        }
+
+        /* Section tarifs */
+        .tarifs-section {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 4rem 0;
+        }
+
+        .tarifs-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #ff4d79, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: #ff4d79;
+        }
+
+        .tarifs-container {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 0 auto;
+            max-width: 900px;
+        }
+
+        .tarifs-table table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1rem;
+        }
+
+        .tarifs-table th {
+            background: linear-gradient(135deg, #ff4d79, #ff6b6b);
+            color: #fff;
+            padding: 1.5rem 1rem;
+            font-weight: 700;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .activites-col {
+            width: 50%;
+            text-align: left !important;
+        }
+
+        .decouverte-col, .engagee-col {
+            width: 25%;
+        }
+
+        .tarifs-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #f1f3f4;
+            vertical-align: top;
+        }
+
+        .activite-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .activite-name ul {
+            margin-top: 0.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .activite-name li {
+            color: #666;
+            font-weight: 400;
+            margin-bottom: 0.3rem;
+        }
+
+        .check {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #22c55e;
+            font-weight: bold;
+        }
+
+        .cross {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #ef4444;
+            font-weight: bold;
+        }
+
+        .periodes-row td {
+            background: #f8f9fa;
+            font-weight: 500;
+        }
+
+        .periodes-info {
+            text-align: left;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .periodes-engagee {
+            background: #e9ecef !important;
+            color: #6c757d;
+            text-align: center;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .periodes-info em,
+        .periodes-engagee em {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .tarifs-row td {
+            background: linear-gradient(135deg, #fff5f5, #fef2f2);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .prix-decouverte {
+            text-align: center;
+            color: #dc2626;
+        }
+
+        .prix-engagee {
+            text-align: center;
+            color: #059669;
+        }
+
+        .activites-base {
+            background: #f9fafb;
+        }
+
+        /* Section contact adhésion */
+        .contact-adhesion-section {
+            padding: 4rem 0;
+            background: #fff;
+        }
+
+        .contact-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .contact-intro h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #ff4d79, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: #ff4d79;
+        }
+
+        .contact-intro p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            padding: 3rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #f8f9fa;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff4d79;
+            box-shadow: 0 0 0 3px rgba(255, 77, 121, 0.1);
+            background-color: #fff;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+
+        .checkbox-item input[type="checkbox"],
+        .checkbox-item input[type="radio"] {
+            width: auto;
+            margin-top: 0.2rem;
+            accent-color: #ff4d79;
+        }
+
+        .checkbox-item label {
+            margin-bottom: 0;
+            font-weight: 500;
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
+        .submit-btn {
+            background: linear-gradient(to right, #ff4d79, #ff6b6b);
+            color: #fff;
+            padding: 1.2rem 2rem;
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 77, 121, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(255, 77, 121, 0.4);
+        }
+
+        .form-note {
+            text-align: center;
+            margin-top: 1rem;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* Footer au style moderne */
+        footer {
+            background: linear-gradient(135deg, #182848 0%, #2b507c 100%);
+            color: #fff;
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 2rem;
+            padding: 0 1.5rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(to right, #ff4d79, #ff6b6b);
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            transition: color 0.3s, transform 0.3s;
+            display: inline-block;
+        }
+
+        .footer-section a:hover {
+            color: #fff;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Footer social links */
+        .social-icons {
+            display: flex;
+            justify-content: left;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s;
+        }
+
+        .social-icons a img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-activites h1 {
+                font-size: 2rem;
+            }
+            
+            .intro-text h2 {
+                font-size: 2rem;
+            }
+            
+            .activites-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            
+            .tarifs-table th,
+            .tarifs-table td {
+                padding: 0.8rem 0.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .contact-form-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .lieux-info {
+                text-align: left;
+            }
+
+            .lieux-info h3 {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-activites {
+                padding: 2rem 1rem;
+            }
+            
+            .tarifs-container {
+                margin: 0 1rem;
+            }
+            
+            .tarifs-table {
+                overflow-x: auto;
+            }
+            
+            .activites-col {
+                width: 60%;
+            }
+            
+            .decouverte-col, .engagee-col {
+                width: 20%;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -118,16 +849,14 @@
 
             <div class="lieux-info">
                 <h3>📍 Tous les ateliers ont lieu à Villebon-sur-Yvette</h3>
-                <div class="lieux-details">
-                    <div class="lieu-item">
-                        <strong>MJC Boby Lapointe :</strong> Motricité, éveil musical, yoga, danse africaine, médiation animale
-                    </div>
-                    <div class="lieu-item">
-                        <strong>Salle des Foulons :</strong> Ateliers Snoezelen
-                    </div>
-                    <div class="lieu-item">
-                        <strong>Salle Jacques Brel :</strong> Spectacles
-                    </div>
+                <div class="lieux-details-text">
+                    <p>Les activités (éveil musical, motricité, baby yoga, médiation animale, danse africaine) se déroulent à la <strong>MJC Boby Lapointe</strong> (8, rue des Maraîchers), de <strong>10h à 10h45</strong>, le <strong>mardi et le jeudi</strong>, selon un calendrier défini (voir la page planning).</p>
+                    
+                    <p>Le <strong>lundi</strong> est réservé aux activités artistiques et aux préparations des spectacles… Ces séances se déroulent également à la <strong>MJC Boby Lapointe</strong> de <strong>10h à 10h45</strong>.</p>
+                    
+                    <p>À <strong>Noël et en juin</strong>, les enfants montent sur scène au <strong>centre culturel Jacques Brel</strong> (rue Jacques Brel).</p>
+                    
+                    <p>Enfin, entre chaque vacances scolaires, les enfants bénéficient d'une séance de <strong>psychomotricité (atelier Snoezelen)</strong> le <strong>mardi</strong>, à la <strong>salle des foulons</strong> (rue du bas de la ferme) de <strong>10h à 11h30</strong>.</p>
                 </div>
             </div>
         </div>
@@ -340,7 +1069,5 @@
             <p>2025 Les p'tites bouilles villebonnaises. Tous droits réservés.</p>
         </div>
     </footer>
-
-    <script src="../script/activites.js"></script>
 </body>
 </html>
