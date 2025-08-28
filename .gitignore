@@ -1,2 +1,6 @@
-assets/
+*.jpg
+*.png
+*.gif
+*.jpeg
+*.webp
 *.tar.xz
