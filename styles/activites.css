@@ -90,10 +90,100 @@
     margin: 0 auto 1rem;
 }
 
-/* Grille des activités */
+/* Section activités avec affiches mises en avant */
+.activites-featured {
+    margin-bottom: 4rem;
+}
+
+.featured-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ff4d79;
+    margin-bottom: 2rem;
+}
+
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+.featured-card {
+    background: #fff;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    transition: all 0.4s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+.featured-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.18);
+}
+
+.featured-poster {
+    height: 500px;
+    overflow: hidden;
+    position: relative;
+}
+
+.featured-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    transition: transform 0.3s ease;
+    background: #f8f9fa;
+}
+
+.featured-card:hover .featured-poster img {
+    transform: scale(1.02);
+}
+
+.featured-content {
+    padding: 2rem;
+    text-align: center;
+}
+
+.featured-content .activite-emoji {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.featured-content h3 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.featured-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.featured-lieu {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff4d79, #ff6b6b);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Grille des autres activités */
 .activites-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2rem;
     margin-bottom: 3rem;
 }
@@ -107,6 +197,7 @@
     position: relative;
     overflow: hidden;
     border-left: 5px solid transparent;
+    text-align: center;
 }
 
 .activite-card::before {
@@ -125,6 +216,12 @@
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
 }
 
+.activite-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Couleurs des bordures des activités */
 .activite-card.motricite {
     border-left-color: #ff4d79;
 }
@@ -197,29 +294,31 @@
     background: linear-gradient(135deg, #f8f9fa, #e9ecef);
     padding: 2rem;
     border-radius: 20px;
-    text-align: center;
+    text-align: left;
 }
 
 .lieux-info h3 {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     color: #333;
+    text-align: center;
 }
 
-.lieux-details {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-}
-
-.lieu-item {
-    background: #fff;
-    padding: 1rem 1.5rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+.lieux-details-text p {
     font-size: 1rem;
+    line-height: 1.8;
     color: #555;
+    margin-bottom: 1.2rem;
+    text-align: justify;
+}
+
+.lieux-details-text p:last-child {
+    margin-bottom: 0;
+}
+
+.lieux-details-text strong {
+    color: #333;
+    font-weight: 600;
 }
 
 /* Section tarifs */
@@ -505,13 +604,29 @@
         font-size: 2rem;
     }
     
-    .hero-logo {
-        width: 150px;
-        height: 150px;
-    }
-    
     .intro-text h2 {
         font-size: 2rem;
+    }
+    
+    .featured-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .featured-card {
+        margin: 0 1rem;
+    }
+
+    .featured-poster {
+        height: 400px;
+    }
+
+    .featured-content {
+        padding: 1.5rem;
+    }
+
+    .featured-content h3 {
+        font-size: 1.5rem;
     }
     
     .activites-grid {
@@ -524,11 +639,6 @@
         gap: 0;
     }
     
-    .lieux-details {
-        flex-direction: column;
-        align-items: center;
-    }
-    
     .tarifs-table th,
     .tarifs-table td {
         padding: 0.8rem 0.5rem;
@@ -538,11 +648,31 @@
     .contact-form-container {
         padding: 2rem 1.5rem;
     }
+
+    .lieux-info {
+        text-align: left;
+    }
+
+    .lieux-info h3 {
+        text-align: center;
+    }
 }
 
 @media (max-width: 480px) {
     .hero-activites {
         padding: 2rem 1rem;
+    }
+
+    .featured-grid {
+        gap: 1.5rem;
+    }
+
+    .featured-poster {
+        height: 350px;
+    }
+
+    .featured-content {
+        padding: 1rem;
     }
     
     .tarifs-container {
