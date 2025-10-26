@@ -2,7 +2,7 @@
 header('Content-Type: application/json');
 
 // Configuration
-$galleryDir = '../assets/gallery/';
+$galleryDir = '../assets/';
 $galleryDataFile = '../assets/gallery/gallery-data.json';
 
 // Vérifier la méthode de requête
