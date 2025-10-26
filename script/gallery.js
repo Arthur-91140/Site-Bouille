@@ -125,13 +125,58 @@ const albumsData = {
 // Fonction pour générer automatiquement les photos d'un album
 function generatePhotos(folderName, count, altBase) {
     const photos = [];
+    const extensions = ['jpg', 'jpeg', 'png', 'webp', 'JPG', 'JPEG', 'PNG', 'WEBP'];
+
     for (let i = 1; i <= count; i++) {
         photos.push({
-            url: `../assets/${folderName}/${folderName}${i}.png`,
-            alt: `${altBase} - Photo ${i}`
+            folder: folderName,
+            index: i,
+            alt: `${altBase} - Photo ${i}`,
+            extensions: extensions,
+            // L'URL sera déterminée dynamiquement lors du chargement
+            url: null
         });
     }
     return photos;
+}
+
+// Fonction pour trouver l'extension correcte d'une image
+async function findImageExtension(folder, fileName, extensions) {
+    for (let ext of extensions) {
+        const url = `../assets/${folder}/${fileName}.${ext}`;
+        try {
+            const response = await fetch(url, { method: 'HEAD' });
+            if (response.ok) {
+                return url;
+            }
+        } catch (e) {
+            continue;
+        }
+    }
+    // Si aucune extension ne fonctionne, retourner png par défaut
+    return `../assets/${folder}/${fileName}.png`;
+}
+
+// Fonction pour résoudre les URLs des photos
+async function resolvePhotoUrls(photos) {
+    const resolvedPhotos = [];
+
+    for (let photo of photos) {
+        if (photo.url) {
+            // URL déjà définie
+            resolvedPhotos.push(photo);
+        } else {
+            // Rechercher l'extension correcte
+            const fileName = `${photo.folder}${photo.index}`;
+            const url = await findImageExtension(photo.folder, fileName, photo.extensions);
+            resolvedPhotos.push({
+                url: url,
+                alt: photo.alt
+            });
+        }
+    }
+
+    return resolvedPhotos;
 }
 
 // Variables globales
@@ -176,26 +221,33 @@ function initializeGallery() {
     animateAlbumCards();
 }
 
-function openModal(albumId) {
+async function openModal(albumId) {
     if (!albumsData[albumId]) return;
-    
-    currentAlbum = albumsData[albumId];
+
+    const albumData = albumsData[albumId];
+
+    // Résoudre les URLs des photos si nécessaire
+    if (!albumData.photos[0].url) {
+        albumData.photos = await resolvePhotoUrls(albumData.photos);
+    }
+
+    currentAlbum = albumData;
     currentPhotoIndex = 0;
-    
+
     // Mise à jour du titre de l'album
     document.getElementById('modalAlbumTitle').textContent = currentAlbum.title;
     document.getElementById('totalPhotos').textContent = currentAlbum.photos.length;
-    
+
     // Création des dots de navigation
     createCarouselDots();
-    
+
     // Affichage de la première photo
     updateCarouselDisplay();
-    
+
     // Ouverture de la modale
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
-    
+
     // Animation d'entrée
     setTimeout(() => {
         modal.style.opacity = '1';
@@ -379,10 +431,17 @@ window.addEventListener('resize', function() {
 });
 
 // Préchargement des images pour une meilleure performance
-function preloadImages(albumId) {
+async function preloadImages(albumId) {
     if (!albumsData[albumId]) return;
-    
-    albumsData[albumId].photos.forEach(photo => {
+
+    const albumData = albumsData[albumId];
+
+    // Résoudre les URLs si nécessaire
+    if (!albumData.photos[0].url) {
+        albumData.photos = await resolvePhotoUrls(albumData.photos);
+    }
+
+    albumData.photos.forEach(photo => {
         const img = new Image();
         img.src = photo.url;
     });
@@ -444,12 +503,17 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Fonction pour créer dynamiquement un album (utile pour les futures extensions)
-function createAlbumCard(albumId, albumData) {
+async function createAlbumCard(albumId, albumData) {
+    // Résoudre les URLs si nécessaire
+    if (albumData.photos.length > 0 && !albumData.photos[0].url) {
+        albumData.photos = await resolvePhotoUrls(albumData.photos);
+    }
+
     const card = document.createElement('div');
     card.className = 'album-card';
     card.dataset.album = albumId;
     card.dataset.date = new Date().toISOString().split('T')[0]; // Date actuelle par défaut
-    
+
     card.innerHTML = `
         <div class="album-thumbnail">
             <div class="thumbnail-grid">
@@ -468,11 +532,11 @@ function createAlbumCard(albumId, albumData) {
             <span class="album-date">${albumData.date}</span>
         </div>
     `;
-    
+
     // Ajout du gestionnaire d'événement
     card.addEventListener('click', function() {
         openModal(albumId);
     });
-    
+
     return card;
 }
