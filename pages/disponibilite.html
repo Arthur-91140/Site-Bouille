@@ -15,7 +15,12 @@
             <h1>Les p'tites bouilles</h1>
             <h1>villebonnaises</h1>
         </div>
-        <nav>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="mainNav">
             <ul>
                 <li><a href="../index.html">Accueil</a></li>
                 <li><a href="./activites.html">Activités & Adhésion</a></li>
@@ -26,6 +31,7 @@
             </ul>
         </nav>
     </header>
+    <div class="menu-overlay" id="menuOverlay"></div>
 
     <section class="hero">
         <div class="hero-content">
@@ -105,6 +111,27 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Carte de Mélaine -->
+            <div class="assmat-card">
+                <div class="assmat-header">
+                    <h3>ALVES Mélaine</h3>
+                </div>
+                <div class="assmat-content">
+                    <div class="assmat-infos">
+                        <p><strong>Adresse:</strong> 2, résidence de Villebon<br>
+                        91140 Villebon-sur-Yvette</p>
+                        <p><strong>Téléphone:</strong> 06.51.20.50.01</p>
+                        <p><strong>Email:</strong> <a href="mailto:melainealves@outlook.com">melainealves@outlook.com</a></p>
+                        <p><strong>Nombre enfants dans l'agrément:</strong> 3</p>
+                    </div>
+                    <div class="assmat-dispo">
+                        <h4>Disponibilités</h4>
+                        <div class="dispo-badge">1 place en Août 2026</div>
+                        <p class="dispo-details">Accueil de 8h à 18h30, ne travaille pas le mercredi.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -123,6 +150,9 @@
                 <h4>Liens utiles</h4>
                 <ul>
                     <li><a href="./mention-legale.html">Mentions légales</a></li>
+                    <li><a href="https://monenfant.fr/" target="_blank">Mon enfant.fr</a></li>
+                    <li><a href="https://www.urssaf.fr/" target="_blank">URSSAF</a></li>
+                    <li><a href="https://honorabilite.social.gouv.fr/" target="_blank">Attestation d'honorabilité</a></li>
                     <div class="social-icons">
                         <a href="https://www.facebook.com/share/1BGpTjQ6nd/" target="_blank">
                             <img src="../assets/facebook-logo.webp" alt="Facebook">
@@ -139,5 +169,6 @@
         </div>
     </footer>
 
+    <script src="../script/menu.js"></script>
 </body>
 </html>

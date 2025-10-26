@@ -321,3 +321,208 @@ const animationObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('.main-card, .presentation-section').forEach(el => {
     animationObserver.observe(el);
 });
+
+// ========== MENU MOBILE ==========
+const menuToggle = document.getElementById('menuToggle');
+const mainNav = document.getElementById('mainNav');
+const menuOverlay = document.getElementById('menuOverlay');
+
+if (menuToggle && mainNav && menuOverlay) {
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        mainNav.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+        document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+    });
+
+    menuOverlay.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        mainNav.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+
+    // Fermer le menu quand on clique sur un lien
+    mainNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            mainNav.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+}
+
+// ========== CARROUSEL D'ACTUALITÉS ==========
+
+let currentNewsIndex = 0;
+let newsAutoSlideInterval;
+let newsData = [];
+
+// Charger les actualités au chargement de la page
+document.addEventListener('DOMContentLoaded', () => {
+    loadNews();
+});
+
+async function loadNews() {
+    try {
+        const response = await fetch('./script/get-news.php');
+        const result = await response.json();
+
+        if (result.success && result.news.length > 0) {
+            newsData = result.news;
+            displayNews();
+            initNewsCarousel();
+        } else {
+            displayNoNews();
+        }
+    } catch (error) {
+        console.error('Erreur lors du chargement des actualités:', error);
+        displayNoNews();
+    }
+}
+
+function displayNews() {
+    const newsSlides = document.getElementById('newsSlides');
+    const newsDots = document.getElementById('newsDots');
+
+    if (!newsSlides || !newsDots) return;
+
+    // Créer les slides
+    newsSlides.innerHTML = newsData.map((news, index) => `
+        <div class="news-slide ${index === 0 ? 'active' : ''}">
+            <img src="./assets/news/${news.filename}" alt="${news.title}">
+        </div>
+    `).join('');
+
+    // Créer les dots
+    newsDots.innerHTML = newsData.map((_, index) => `
+        <span class="news-dot ${index === 0 ? 'active' : ''}" onclick="goToNewsSlide(${index})"></span>
+    `).join('');
+
+    // Afficher les boutons seulement s'il y a plus d'une actualité
+    const prevBtn = document.getElementById('newsPrevBtn');
+    const nextBtn = document.getElementById('newsNextBtn');
+    if (newsData.length <= 1) {
+        if (prevBtn) prevBtn.style.display = 'none';
+        if (nextBtn) nextBtn.style.display = 'none';
+        if (newsDots) newsDots.style.display = 'none';
+    }
+}
+
+function displayNoNews() {
+    const newsSlides = document.getElementById('newsSlides');
+    if (newsSlides) {
+        newsSlides.innerHTML = '<div class="no-news">Aucune actualité pour le moment</div>';
+    }
+
+    // Masquer les contrôles
+    const prevBtn = document.getElementById('newsPrevBtn');
+    const nextBtn = document.getElementById('newsNextBtn');
+    const newsDots = document.getElementById('newsDots');
+    if (prevBtn) prevBtn.style.display = 'none';
+    if (nextBtn) nextBtn.style.display = 'none';
+    if (newsDots) newsDots.style.display = 'none';
+}
+
+function initNewsCarousel() {
+    if (newsData.length <= 1) return;
+
+    const prevBtn = document.getElementById('newsPrevBtn');
+    const nextBtn = document.getElementById('newsNextBtn');
+    const newsContainer = document.getElementById('newsContainer');
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => changeNewsSlide(-1));
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => changeNewsSlide(1));
+    }
+
+    // Auto-slide
+    startNewsAutoSlide();
+
+    // Pause on hover
+    if (newsContainer) {
+        newsContainer.addEventListener('mouseenter', stopNewsAutoSlide);
+        newsContainer.addEventListener('mouseleave', startNewsAutoSlide);
+    }
+
+    // Swipe sur mobile
+    let startX = 0;
+    if (newsContainer) {
+        newsContainer.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        newsContainer.addEventListener('touchend', (e) => {
+            const endX = e.changedTouches[0].clientX;
+            const diff = startX - endX;
+            if (Math.abs(diff) > 50) {
+                changeNewsSlide(diff > 0 ? 1 : -1);
+            }
+        });
+    }
+}
+
+function changeNewsSlide(direction) {
+    const slides = document.querySelectorAll('.news-slide');
+    const dots = document.querySelectorAll('.news-dot');
+    const newsSlides = document.getElementById('newsSlides');
+
+    if (!slides.length || !newsSlides) return;
+
+    currentNewsIndex += direction;
+
+    if (currentNewsIndex >= newsData.length) {
+        currentNewsIndex = 0;
+    } else if (currentNewsIndex < 0) {
+        currentNewsIndex = newsData.length - 1;
+    }
+
+    // Animation du slide
+    newsSlides.style.transform = `translateX(-${currentNewsIndex * 100}%)`;
+
+    // Mettre à jour les dots
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentNewsIndex);
+    });
+
+    stopNewsAutoSlide();
+    startNewsAutoSlide();
+}
+
+function goToNewsSlide(index) {
+    const newsSlides = document.getElementById('newsSlides');
+    const dots = document.querySelectorAll('.news-dot');
+
+    if (!newsSlides) return;
+
+    currentNewsIndex = index;
+    newsSlides.style.transform = `translateX(-${currentNewsIndex * 100}%)`;
+
+    dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentNewsIndex);
+    });
+
+    stopNewsAutoSlide();
+    startNewsAutoSlide();
+}
+
+function startNewsAutoSlide() {
+    if (newsData.length <= 1) return;
+    stopNewsAutoSlide();
+    newsAutoSlideInterval = setInterval(() => {
+        changeNewsSlide(1);
+    }, 5000);
+}
+
+function stopNewsAutoSlide() {
+    if (newsAutoSlideInterval) {
+        clearInterval(newsAutoSlideInterval);
+    }
+}
+
+// Rendre les fonctions accessibles globalement
+window.goToNewsSlide = goToNewsSlide;

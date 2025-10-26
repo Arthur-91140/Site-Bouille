@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration Actualités - Les P'tites Bouilles Villebonnaises</title>
+    <link rel="icon" type="image/jpeg" href="../assets/logo.jpg">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/admin-gallery.css">
+    <link rel="stylesheet" href="../styles/responsive.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Les p'tites bouilles</h1>
+            <h1>villebonnaises</h1>
+        </div>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="mainNav">
+            <ul>
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="./activites.html">Activités & Adhésion</a></li>
+                <li><a href="./gallery.html">Galerie</a></li>
+                <li><a href="./disponibilite.html">Disponibilités</a></li>
+                <li><a href="./agenda.html">Planning</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <!-- Section héro -->
+    <section class="admin-hero">
+        <div class="hero-content">
+            <div class="admin-icon">📰</div>
+            <h1>Administration des Actualités</h1>
+            <p>Gérez les affiches d'actualités affichées sur la page d'accueil</p>
+        </div>
+    </section>
+
+    <!-- Authentification -->
+    <div id="authSection" class="auth-section">
+        <div class="auth-container">
+            <div class="auth-card">
+                <h2>Connexion requise</h2>
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" id="password" name="password" required placeholder="Entrez le mot de passe">
+                    </div>
+                    <button type="submit" class="submit-btn">Se connecter</button>
+                </form>
+                <div id="authError" class="auth-error" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section administration -->
+    <div id="adminSection" class="admin-section" style="display: none;">
+        <div class="container">
+            <div class="admin-header">
+                <h2>Gestion des Actualités</h2>
+                <div style="display: flex; gap: 1rem;">
+                    <a href="./admin-gallery.html" class="logout-btn" style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); text-decoration: none;">📸 Galerie</a>
+                    <button id="logoutBtn" class="logout-btn">Se déconnecter</button>
+                </div>
+            </div>
+
+            <!-- Ajouter une nouvelle actualité -->
+            <div class="admin-card">
+                <h3>➕ Ajouter une nouvelle actualité</h3>
+                <p style="color: #666; margin-bottom: 1.5rem;">Format recommandé : 16:9 (1920x1080px ou 1280x720px)</p>
+                <form id="addNewsForm" class="admin-form">
+                    <div class="form-group">
+                        <label for="newsTitle">Titre (optionnel)</label>
+                        <input type="text" id="newsTitle" name="newsTitle" placeholder="ex: Spectacle de Noël 2025">
+                        <small>Ce titre est utilisé uniquement pour identifier l'affiche dans l'administration</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newsFile">Affiche (format 16:9)*</label>
+                        <input type="file" id="newsFile" name="newsFile" accept="image/jpeg,image/jpg,image/png,image/webp" required>
+                        <small>Formats acceptés: JPG, PNG, WEBP. Taille max: 5 Mo. Dimensions recommandées: 1920x1080px</small>
+                        <div id="newsPreview" class="photo-preview" style="grid-template-columns: 1fr; max-width: 600px; margin-top: 1rem;"></div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span>Ajouter l'actualité</span>
+                    </button>
+                </form>
+                <div id="uploadProgress" class="upload-progress" style="display: none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p id="progressText">Upload en cours...</p>
+                </div>
+            </div>
+
+            <!-- Liste des actualités existantes -->
+            <div class="admin-card">
+                <h3>📋 Actualités existantes</h3>
+                <p style="color: #666; margin-bottom: 1.5rem;">Les actualités sont affichées dans l'ordre chronologique (les plus récentes en premier)</p>
+                <div id="newsList" class="albums-list">
+                    <p class="loading">Chargement des actualités...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>À propos</h4>
+                <p>Les p'tites bouilles villebonnaises sont une association loi 1901, créée en 2013, ayant pour but la création et l'animation d'ateliers permettant le développement psychomoteur de l'enfant de moins de 4 ans, son épanouissement et sa socialisation.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email : nounou.villebon.les.bouilles@gmail.com</p>
+                <p>Téléphone : 06 24 24 10 64</p>
+            </div>
+            <div class="footer-section">
+                <h4>Liens utiles</h4>
+                <ul>
+                    <li><a href="./mention-legale.html">Mentions légales</a></li>
+                    <li><a href="https://monenfant.fr/" target="_blank">Mon enfant.fr</a></li>
+                    <li><a href="https://www.urssaf.fr/" target="_blank">URSSAF</a></li>
+                    <li><a href="https://honorabilite.social.gouv.fr/" target="_blank">Attestation d'honorabilité</a></li>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/share/1BGpTjQ6nd/" target="_blank">
+                            <img src="../assets/facebook-logo.webp" alt="Facebook">
+                        </a>
+                        <a href="https://instagram.com" target="_blank">
+                            <img src="../assets/Instagram_icon.webp" alt="Instagram">
+                        </a>
+                    </div>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>2025 Les p'tites bouilles villebonnaises. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="../script/menu.js"></script>
+    <script src="../script/admin-news.js"></script>
+</body>
+</html>

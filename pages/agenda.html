@@ -15,7 +15,12 @@
             <h1>Les p'tites bouilles</h1>
             <h1>villebonnaises</h1>
         </div>
-        <nav>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="mainNav">
             <ul>
                 <li><a href="../index.html">Accueil</a></li>
                 <li><a href="./activites.html">Activités & Adhésion</a></li>
@@ -26,6 +31,7 @@
             </ul>
         </nav>
     </header>
+    <div class="menu-overlay" id="menuOverlay"></div>
 
     <section class="agenda-hero">
         <div class="hero-content">
@@ -49,11 +55,20 @@
         <div class="agenda-header">
             <h3>Calendrier des activités</h3>
             <div class="agenda-filters">
+                <div class="date-range-filter">
+                    <label for="start-date">Du :</label>
+                    <input type="date" id="start-date" name="start-date">
+                    <label for="end-date">Au :</label>
+                    <input type="date" id="end-date" name="end-date">
+                    <button id="reset-dates" class="reset-btn">Réinitialiser</button>
+                </div>
                 <select id="period-filter">
                     <option value="all">Toutes les périodes</option>
-                    <option value="1">1ère période (08.09.25 - 12.12.25)</option>
-                    <option value="2">2ème période (15.12.25 - 03.04.26)</option>
-                    <option value="3">3ème période (06.04.26 - 03.07.26)</option>
+                    <option value="1">1ère période (09.09.25 - 18.10.25)</option>
+                    <option value="2">2ème période (04.11.25 - 20.12.25)</option>
+                    <option value="3">3ème période (06.01.26 - 21.02.26)</option>
+                    <option value="4">4ème période (10.03.26 - 18.04.26)</option>
+                    <option value="5">5ème période (05.05.26 - 02.07.26)</option>
                 </select>
                 <select id="activity-filter">
                     <option value="all">Toutes les activités</option>
@@ -91,6 +106,9 @@
                 <h4>Liens utiles</h4>
                 <ul>
                     <li><a href="./mention-legale.html">Mentions légales</a></li>
+                    <li><a href="https://monenfant.fr/" target="_blank">Mon enfant.fr</a></li>
+                    <li><a href="https://www.urssaf.fr/" target="_blank">URSSAF</a></li>
+                    <li><a href="https://honorabilite.social.gouv.fr/" target="_blank">Attestation d'honorabilité</a></li>
                     <div class="social-icons">
                         <a href="https://www.facebook.com/share/1BGpTjQ6nd/" target="_blank">
                             <img src="../assets/facebook-logo.webp" alt="Facebook">
@@ -107,6 +125,7 @@
         </div>
     </footer>
 
+    <script src="../script/menu.js"></script>
     <script src="../script/agenda.js"></script>
 </body>
 </html>

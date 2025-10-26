@@ -15,7 +15,12 @@
             <h1>Les p'tites bouilles</h1>
             <h1>villebonnaises</h1>
         </div>
-        <nav>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="mainNav">
             <ul>
                 <li><a href="../index.html">Accueil</a></li>
                 <li><a href="./activites.html">Activités & Adhésion</a></li>
@@ -26,6 +31,7 @@
             </ul>
         </nav>
     </header>
+    <div class="menu-overlay" id="menuOverlay"></div>
 
     <section class="legal-hero">
         <div class="hero-content">
@@ -153,6 +159,9 @@
                 <h4>Liens utiles</h4>
                 <ul>
                     <li><a href="./mention-legale.html">Mentions légales</a></li>
+                    <li><a href="https://monenfant.fr/" target="_blank">Mon enfant.fr</a></li>
+                    <li><a href="https://www.urssaf.fr/" target="_blank">URSSAF</a></li>
+                    <li><a href="https://honorabilite.social.gouv.fr/" target="_blank">Attestation d'honorabilité</a></li>
                     <div class="social-icons">
                         <a href="https://www.facebook.com/share/1BGpTjQ6nd/" target="_blank">
                             <img src="../assets/facebook-logo.webp" alt="Facebook">
@@ -168,5 +177,7 @@
             <p>2025 Les p'tites bouilles villebonnaises. Tous droits réservés.</p>
         </div>
     </footer>
+
+    <script src="../script/menu.js"></script>
 </body>
 </html>

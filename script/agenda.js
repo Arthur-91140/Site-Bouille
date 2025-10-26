@@ -14,15 +14,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const periodFilter = document.getElementById('period-filter');
     const activityFilter = document.getElementById('activity-filter');
+    const startDateInput = document.getElementById('start-date');
+    const endDateInput = document.getElementById('end-date');
+    const resetDatesBtn = document.getElementById('reset-dates');
     const eventsList = document.querySelector('.events-list');
 
-    // Données complètes du planning selon les nouvelles périodes
+    // Données complètes du planning 2025-2026 (5 périodes)
     const planningData = [
-        // 1ère Période (08.09.2025 au 12.12.2025)
+        // 1ère Période
         { date: '2025-09-09', day: 'mardi', activity: 'RENTRÉE', type: 'special', period: 1 },
         { date: '2025-09-11', day: 'jeudi', activity: 'MUSIQUE', type: 'musique', period: 1 },
-        { date: '2025-09-16', day: 'mardi', activity: 'MÉDIATION ANIMALE', type: 'mediation', period: 1 },
+        { date: '2025-09-16', day: 'mardi', activity: 'MOTRICITÉ + JARDIN SENSORIEL', type: 'motricite', period: 1 },
         { date: '2025-09-18', day: 'jeudi', activity: 'MOTRICITÉ', type: 'motricite', period: 1 },
+        { date: '2025-09-19', day: 'jeudi', activity: 'MÉDIATION ANIMALE', type: 'mediation', period: 1 },
         { date: '2025-09-23', day: 'mardi', activity: 'YOGA', type: 'yoga', period: 1 },
         { date: '2025-09-25', day: 'jeudi', activity: 'MUSIQUE', type: 'musique', period: 1 },
         { date: '2025-09-30', day: 'mardi', activity: 'DANSE AFRICAINE', type: 'danse', period: 1 },
@@ -32,71 +36,75 @@ document.addEventListener('DOMContentLoaded', function() {
         { date: '2025-10-14', day: 'mardi', activity: 'YOGA', type: 'yoga', period: 1 },
         { date: '2025-10-16', day: 'jeudi', activity: 'MOTRICITÉ', type: 'motricite', period: 1 },
         { date: '2025-10-18', day: 'samedi', activity: 'VACANCES', type: 'vacances', period: 1, endDate: '2025-11-02' },
-        { date: '2025-11-04', day: 'mardi', activity: 'DANSE AFRICAINE', type: 'danse', period: 1 },
-        { date: '2025-11-06', day: 'jeudi', activity: 'MUSIQUE', type: 'musique', period: 1 },
-        { date: '2025-11-11', day: 'mardi', activity: 'FÉRIÉ', type: 'ferie', period: 1 },
-        { date: '2025-11-13', day: 'jeudi', activity: 'MOTRICITÉ', type: 'motricite', period: 1 },
-        { date: '2025-11-18', day: 'mardi', activity: 'YOGA', type: 'yoga', period: 1 },
-        { date: '2025-11-20', day: 'jeudi', activity: 'MÉDIATION ANIMALE', type: 'mediation', period: 1 },
-        { date: '2025-11-25', day: 'mardi', activity: 'MUSIQUE', type: 'musique', period: 1 },
-        { date: '2025-11-27', day: 'jeudi', activity: 'MOTRICITÉ', type: 'motricite', period: 1 },
-        { date: '2025-12-02', day: 'mardi', activity: 'PSYCHOMOTRICITÉ', type: 'psychomotricite', period: 1 },
-        { date: '2025-12-04', day: 'jeudi', activity: 'MOTRICITÉ', type: 'motricite', period: 1 },
-        { date: '2025-12-09', day: 'mardi', activity: 'YOGA', type: 'yoga', period: 1 },
-        { date: '2025-12-11', day: 'jeudi', activity: 'MOTRICITÉ', type: 'motricite', period: 1 },
 
-        // 2ème Période (15.12.2025 au 03.04.2026)
+        // 2ème Période
+        { date: '2025-11-04', day: 'mardi', activity: 'DANSE AFRICAINE', type: 'danse', period: 2 },
+        { date: '2025-11-06', day: 'jeudi', activity: 'MUSIQUE', type: 'musique', period: 2 },
+        { date: '2025-11-11', day: 'mardi', activity: 'FÉRIÉ', type: 'ferie', period: 2 },
+        { date: '2025-11-13', day: 'jeudi', activity: 'MOTRICITÉ', type: 'motricite', period: 2 },
+        { date: '2025-11-18', day: 'mardi', activity: 'YOGA', type: 'yoga', period: 2 },
+        { date: '2025-11-20', day: 'jeudi', activity: 'MOTRICITÉ + MÉDIATION ANIMALE', type: 'motricite', period: 2 },
+        { date: '2025-11-25', day: 'mardi', activity: 'MUSIQUE', type: 'musique', period: 2 },
+        { date: '2025-11-27', day: 'jeudi', activity: 'MOTRICITÉ', type: 'motricite', period: 2 },
+        { date: '2025-12-02', day: 'mardi', activity: 'PSYCHOMOTRICITÉ', type: 'psychomotricite', period: 2 },
+        { date: '2025-12-04', day: 'jeudi', activity: 'MOTRICITÉ', type: 'motricite', period: 2 },
+        { date: '2025-12-09', day: 'mardi', activity: 'YOGA', type: 'yoga', period: 2 },
+        { date: '2025-12-11', day: 'jeudi', activity: 'MUSIQUE', type: 'musique', period: 2 },
         { date: '2025-12-16', day: 'mardi', activity: 'SPECTACLE à BREL', type: 'spectacle', period: 2 },
         { date: '2025-12-18', day: 'jeudi', activity: 'JEUX', type: 'jeux', period: 2 },
         { date: '2025-12-20', day: 'samedi', activity: 'VACANCES', type: 'vacances', period: 2, endDate: '2026-01-04' },
-        { date: '2026-01-06', day: 'mardi', activity: 'DANSE AFRICAINE', type: 'danse', period: 2 },
-        { date: '2026-01-08', day: 'jeudi', activity: 'MUSIQUE', type: 'musique', period: 2 },
-        { date: '2026-01-13', day: 'mardi', activity: 'YOGA', type: 'yoga', period: 2 },
-        { date: '2026-01-15', day: 'jeudi', activity: 'MOTRICITÉ', type: 'motricite', period: 2 },
-        { date: '2026-01-20', day: 'mardi', activity: 'MÉDIATION ANIMALE', type: 'mediation', period: 2 },
-        { date: '2026-01-22', day: 'jeudi', activity: 'DANSE', type: 'danse', period: 2 },
-        { date: '2026-01-27', day: 'mardi', activity: 'DANSE AFRICAINE', type: 'danse', period: 2 },
-        { date: '2026-01-29', day: 'jeudi', activity: 'MUSIQUE', type: 'musique', period: 2 },
-        { date: '2026-02-03', day: 'mardi', activity: 'PSYCHOMOTRICITÉ', type: 'psychomotricite', period: 2 },
-        { date: '2026-02-05', day: 'jeudi', activity: 'MUSIQUE', type: 'musique', period: 2 },
-        { date: '2026-02-10', day: 'mardi', activity: 'YOGA', type: 'yoga', period: 2 },
-        { date: '2026-02-12', day: 'jeudi', activity: 'MOTRICITÉ', type: 'motricite', period: 2 },
-        { date: '2026-02-17', day: 'mardi', activity: 'DANSE AFRICAINE', type: 'danse', period: 2 },
-        { date: '2026-02-19', day: 'jeudi', activity: 'MOTRICITÉ', type: 'motricite', period: 2 },
-        { date: '2026-02-21', day: 'samedi', activity: 'VACANCES', type: 'vacances', period: 2, endDate: '2026-03-08' },
-        { date: '2026-03-10', day: 'mardi', activity: 'YOGA', type: 'yoga', period: 2 },
-        { date: '2026-03-12', day: 'jeudi', activity: 'MUSIQUE', type: 'musique', period: 2 },
-        { date: '2026-03-17', day: 'mardi', activity: 'DANSE AFRICAINE', type: 'danse', period: 2 },
-        { date: '2026-03-19', day: 'jeudi', activity: 'MOTRICITÉ', type: 'motricite', period: 2 },
-        { date: '2026-03-24', day: 'mardi', activity: 'MÉDIATION ANIMALE', type: 'mediation', period: 2 },
-        { date: '2026-03-26', day: 'jeudi', activity: 'DANSE AFRICAINE', type: 'danse', period: 2 },
-        { date: '2026-03-31', day: 'mardi', activity: 'DANSE', type: 'danse', period: 2 },
-        { date: '2026-04-02', day: 'jeudi', activity: 'MUSIQUE', type: 'musique', period: 2 },
 
-        // 3ème Période (06.04.2026 au 03.07.2026)
-        { date: '2026-04-07', day: 'mardi', activity: 'PSYCHOMOTRICITÉ', type: 'psychomotricite', period: 3 },
-        { date: '2026-04-09', day: 'jeudi', activity: 'JEUX', type: 'jeux', period: 3 },
-        { date: '2026-04-14', day: 'mardi', activity: 'YOGA', type: 'yoga', period: 3 },
-        { date: '2026-04-16', day: 'jeudi', activity: 'REMI spec à confirm.', type: 'spectacle', period: 3 },
-        { date: '2026-04-18', day: 'samedi', activity: 'VACANCES', type: 'vacances', period: 3, endDate: '2026-05-03' },
-        { date: '2026-05-05', day: 'mardi', activity: 'DANSE AFRICAINE', type: 'danse', period: 3 },
-        { date: '2026-05-07', day: 'jeudi', activity: 'MUSIQUE', type: 'musique', period: 3 },
-        { date: '2026-05-12', day: 'mardi', activity: 'DANSE AFRICAINE', type: 'danse', period: 3 },
-        { date: '2026-05-14', day: 'jeudi', activity: 'FÉRIÉ', type: 'ferie', period: 3 },
-        { date: '2026-05-19', day: 'mardi', activity: 'YOGA', type: 'yoga', period: 3 },
-        { date: '2026-05-21', day: 'jeudi', activity: 'MÉDIATION ANIMALE', type: 'mediation', period: 3 },
-        { date: '2026-05-26', day: 'mardi', activity: 'MÉDIATION ANIMALE', type: 'mediation', period: 3 },
-        { date: '2026-05-28', day: 'jeudi', activity: 'MUSIQUE', type: 'musique', period: 3 },
-        { date: '2026-06-02', day: 'mardi', activity: 'DANSE AFRICAINE', type: 'danse', period: 3 },
-        { date: '2026-06-04', day: 'jeudi', activity: 'YOGA', type: 'yoga', period: 3 },
-        { date: '2026-06-09', day: 'mardi', activity: 'YOGA', type: 'yoga', period: 3 },
-        { date: '2026-06-11', day: 'jeudi', activity: 'MOTRICITÉ', type: 'motricite', period: 3 },
-        { date: '2026-06-16', day: 'mardi', activity: 'SPECTACLE à BREL', type: 'spectacle', period: 3 },
-        { date: '2026-06-18', day: 'jeudi', activity: 'A confirmer', type: 'special', period: 3 },
-        { date: '2026-06-23', day: 'mardi', activity: 'DANSE AFRICAINE', type: 'danse', period: 3 },
-        { date: '2026-06-25', day: 'jeudi', activity: 'MUSIQUE', type: 'musique', period: 3 },
-        { date: '2026-06-30', day: 'mardi', activity: 'PSYCHOMOTRICITÉ', type: 'psychomotricite', period: 3 },
-        { date: '2026-07-02', day: 'jeudi', activity: 'DANSE AFRICAINE', type: 'danse', period: 3 }
+        // 3ème Période
+        { date: '2026-01-06', day: 'mardi', activity: 'DANSE AFRICAINE', type: 'danse', period: 3 },
+        { date: '2026-01-08', day: 'jeudi', activity: 'MUSIQUE', type: 'musique', period: 3 },
+        { date: '2026-01-13', day: 'mardi', activity: 'YOGA', type: 'yoga', period: 3 },
+        { date: '2026-01-15', day: 'jeudi', activity: 'MOTRICITÉ', type: 'motricite', period: 3 },
+        { date: '2026-01-20', day: 'mardi', activity: 'MOTRICITÉ + MÉDIATION ANIMALE', type: 'motricite', period: 3 },
+        { date: '2026-01-22', day: 'jeudi', activity: 'MOTRICITÉ', type: 'motricite', period: 3 },
+        { date: '2026-01-27', day: 'mardi', activity: 'DANSE', type: 'danse', period: 3 },
+        { date: '2026-01-29', day: 'jeudi', activity: 'MUSIQUE', type: 'musique', period: 3 },
+        { date: '2026-02-03', day: 'mardi', activity: 'PSYCHOMOTRICITÉ', type: 'psychomotricite', period: 3 },
+        { date: '2026-02-05', day: 'jeudi', activity: 'MUSIQUE', type: 'musique', period: 3 },
+        { date: '2026-02-10', day: 'mardi', activity: 'YOGA', type: 'yoga', period: 3 },
+        { date: '2026-02-12', day: 'jeudi', activity: 'MOTRICITÉ', type: 'motricite', period: 3 },
+        { date: '2026-02-17', day: 'mardi', activity: 'DANSE AFRICAINE', type: 'danse', period: 3 },
+        { date: '2026-02-19', day: 'jeudi', activity: 'JEUX', type: 'jeux', period: 3 },
+        { date: '2026-02-21', day: 'samedi', activity: 'VACANCES', type: 'vacances', period: 3, endDate: '2026-03-08' },
+
+        // 4ème Période
+        { date: '2026-03-10', day: 'mardi', activity: 'YOGA', type: 'yoga', period: 4 },
+        { date: '2026-03-12', day: 'jeudi', activity: 'MUSIQUE', type: 'musique', period: 4 },
+        { date: '2026-03-17', day: 'mardi', activity: 'DANSE AFRICAINE', type: 'danse', period: 4 },
+        { date: '2026-03-19', day: 'jeudi', activity: 'MOTRICITÉ', type: 'motricite', period: 4 },
+        { date: '2026-03-24', day: 'mardi', activity: 'MOTRICITÉ + MÉDIATION ANIMALE', type: 'motricite', period: 4 },
+        { date: '2026-03-26', day: 'jeudi', activity: 'MOTRICITÉ', type: 'motricite', period: 4 },
+        { date: '2026-03-31', day: 'mardi', activity: 'DANSE AFRICAINE', type: 'danse', period: 4 },
+        { date: '2026-04-02', day: 'jeudi', activity: 'MUSIQUE', type: 'musique', period: 4 },
+        { date: '2026-04-07', day: 'mardi', activity: 'PSYCHOMOTRICITÉ', type: 'psychomotricite', period: 4 },
+        { date: '2026-04-09', day: 'jeudi', activity: 'JEUX', type: 'jeux', period: 4 },
+        { date: '2026-04-14', day: 'mardi', activity: 'YOGA', type: 'yoga', period: 4 },
+        { date: '2026-04-16', day: 'jeudi', activity: 'REMI (à confirmer)', type: 'spectacle', period: 4 },
+        { date: '2026-04-18', day: 'samedi', activity: 'VACANCES', type: 'vacances', period: 4, endDate: '2026-05-03' },
+
+        // 5ème Période
+        { date: '2026-05-05', day: 'mardi', activity: 'DANSE AFRICAINE', type: 'danse', period: 5 },
+        { date: '2026-05-07', day: 'jeudi', activity: 'MUSIQUE', type: 'musique', period: 5 },
+        { date: '2026-05-12', day: 'mardi', activity: 'DANSE AFRICAINE', type: 'danse', period: 5 },
+        { date: '2026-05-14', day: 'jeudi', activity: 'FÉRIÉ', type: 'ferie', period: 5 },
+        { date: '2026-05-19', day: 'mardi', activity: 'YOGA', type: 'yoga', period: 5 },
+        { date: '2026-05-21', day: 'jeudi', activity: 'MOTRICITÉ + MÉDIATION ANIMALE', type: 'motricite', period: 5 },
+        { date: '2026-05-26', day: 'mardi', activity: 'MÉDIATION ANIMALE', type: 'mediation', period: 5 },
+        { date: '2026-05-28', day: 'jeudi', activity: 'MUSIQUE', type: 'musique', period: 5 },
+        { date: '2026-06-02', day: 'mardi', activity: 'DANSE AFRICAINE', type: 'danse', period: 5 },
+        { date: '2026-06-04', day: 'jeudi', activity: 'MOTRICITÉ', type: 'motricite', period: 5 },
+        { date: '2026-06-09', day: 'mardi', activity: 'YOGA', type: 'yoga', period: 5 },
+        { date: '2026-06-11', day: 'jeudi', activity: 'MOTRICITÉ', type: 'motricite', period: 5 },
+        { date: '2026-06-16', day: 'mardi', activity: 'SPECTACLE à BREL', type: 'spectacle', period: 5 },
+        { date: '2026-06-18', day: 'jeudi', activity: 'JEUX', type: 'jeux', period: 5 },
+        { date: '2026-06-23', day: 'mardi', activity: 'DANSE AFRICAINE', type: 'danse', period: 5 },
+        { date: '2026-06-25', day: 'jeudi', activity: 'MUSIQUE', type: 'musique', period: 5 },
+        { date: '2026-06-30', day: 'mardi', activity: 'PSYCHOMOTRICITÉ', type: 'psychomotricite', period: 5 },
+        { date: '2026-07-02', day: 'jeudi', activity: 'DANSE AFRICAINE + MÉDIATION ANIMALE', type: 'danse', period: 5 }
     ];
 
     // Fonction pour obtenir la classe CSS selon le type d'activité
@@ -156,12 +164,18 @@ document.addEventListener('DOMContentLoaded', function() {
     function filterActivities() {
         const periodValue = parseInt(periodFilter.value);
         const activityValue = activityFilter.value;
-        
+        const startDate = startDateInput.value ? new Date(startDateInput.value) : null;
+        const endDate = endDateInput.value ? new Date(endDateInput.value) : null;
+
         return planningData.filter(activity => {
+            const activityDate = new Date(activity.date);
+
             const matchesPeriod = isNaN(periodValue) || activity.period === periodValue;
             const matchesActivity = activityValue === 'all' || activity.type === activityValue;
-            
-            return matchesPeriod && matchesActivity;
+            const matchesStartDate = !startDate || activityDate >= startDate;
+            const matchesEndDate = !endDate || activityDate <= endDate;
+
+            return matchesPeriod && matchesActivity && matchesStartDate && matchesEndDate;
         });
     }
 
@@ -187,9 +201,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Afficher chaque période
         Object.keys(activitiesByPeriod).sort().forEach(period => {
             const periodNames = {
-                1: '1ère période - Du 08.09.2025 au 12.12.2025',
-                2: '2ème période - Du 15.12.2025 au 03.04.2026',
-                3: '3ème période - Du 06.04.2026 au 03.07.2026'
+                1: '1ère période - Du 09.09.2025 au 18.10.2025',
+                2: '2ème période - Du 04.11.2025 au 20.12.2025',
+                3: '3ème période - Du 06.01.2026 au 21.02.2026',
+                4: '4ème période - Du 10.03.2026 au 18.04.2026',
+                5: '5ème période - Du 05.05.2026 au 02.07.2026'
             };
 
             // En-tête de période
@@ -228,6 +244,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Écouteurs d'événements
     periodFilter.addEventListener('change', displayActivities);
     activityFilter.addEventListener('change', displayActivities);
+    startDateInput.addEventListener('change', displayActivities);
+    endDateInput.addEventListener('change', displayActivities);
+
+    // Bouton de réinitialisation des dates
+    resetDatesBtn.addEventListener('click', function() {
+        startDateInput.value = '';
+        endDateInput.value = '';
+        displayActivities();
+    });
 
     // Affichage initial
     displayActivities();

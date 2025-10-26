@@ -1,0 +1,174 @@
+/* RESPONSIVE CSS - Global responsive rules for all pages */
+
+/* Prevent horizontal scroll */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+/* Images responsive */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Tablettes (768px - 1024px) */
+@media (max-width: 1024px) {
+    /* Containers */
+    .container {
+        padding: 0 20px;
+    }
+
+    /* Typography */
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    /* Grids */
+    .cards-grid,
+    .tarifs-container,
+    .activites-featured .featured-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* Mobile (481px - 768px) */
+@media (max-width: 768px) {
+    /* Typography */
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+    }
+
+    p {
+        font-size: 0.95rem;
+    }
+
+    /* Buttons */
+    .submit-btn,
+    .download-calendar-btn,
+    .reset-btn {
+        width: 100%;
+        padding: 0.9rem 1.5rem;
+    }
+
+    /* Forms */
+    .form-row {
+        flex-direction: column;
+    }
+
+    .contact-container,
+    .contact-form-container {
+        padding: 1.5rem;
+    }
+
+    /* Cards */
+    .main-card {
+        padding: 1.5rem;
+    }
+
+    /* Tables */
+    table {
+        font-size: 0.85rem;
+    }
+
+    th, td {
+        padding: 0.5rem !important;
+    }
+
+    /* Contact cards */
+    .contact-info {
+        order: 2;
+    }
+
+    .contact-form-container {
+        order: 1;
+    }
+}
+
+/* Petits mobiles (jusqu'à 480px) */
+@media (max-width: 480px) {
+    /* Typography */
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    /* Containers */
+    .container {
+        padding: 0 15px;
+    }
+
+    /* Buttons */
+    .submit-btn,
+    .download-calendar-btn,
+    .reset-btn {
+        font-size: 0.9rem;
+        padding: 0.8rem 1.2rem;
+    }
+
+    /* Forms */
+    input, textarea, select {
+        font-size: 14px;
+    }
+
+    /* Cards */
+    .main-card,
+    .contact-card,
+    .assmat-card {
+        padding: 1rem;
+    }
+
+    /* Tables */
+    table {
+        font-size: 0.75rem;
+    }
+
+    th, td {
+        padding: 0.4rem !important;
+    }
+
+    /* Spacing */
+    section {
+        margin-bottom: 2rem;
+    }
+}
+
+/* Landscape mode on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    header nav {
+        height: 100vh;
+        overflow-y: auto;
+    }
+
+    .hero {
+        padding: 3rem 1.5rem;
+    }
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Migration Galerie vers JSON</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .result {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        button {
+            background: #4facfe;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #43cbff;
+        }
+        pre {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .success {
+            color: #059669;
+            font-weight: bold;
+        }
+        .error {
+            color: #dc2626;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔄 Migration de la Galerie vers JSON</h1>
+    <p>Cette page permet de migrer les données de la galerie depuis <code>gallery.js</code> vers <code>gallery-data.json</code>.</p>
+
+    <p><strong>⚠️ Important :</strong> Cette opération doit être effectuée une seule fois.</p>
+
+    <button onclick="migrate()">Lancer la migration</button>
+
+    <div id="result" class="result" style="display: none;">
+        <h2>Résultat de la migration :</h2>
+        <div id="resultContent"></div>
+    </div>
+
+    <script>
+        async function migrate() {
+            const resultDiv = document.getElementById('result');
+            const resultContent = document.getElementById('resultContent');
+
+            resultDiv.style.display = 'block';
+            resultContent.innerHTML = '<p>Migration en cours...</p>';
+
+            try {
+                const response = await fetch('./migrate-gallery-to-json.php');
+                const result = await response.json();
+
+                if (result.success) {
+                    resultContent.innerHTML = `
+                        <p class="success">✅ Migration réussie !</p>
+                        <p><strong>Nombre d'albums migrés :</strong> ${result.albums_count}</p>
+                        <h3>Albums migrés :</h3>
+                        <pre>${JSON.stringify(result.albums, null, 2)}</pre>
+                        <p><strong>Prochaines étapes :</strong></p>
+                        <ol>
+                            <li>Mettre à jour gallery.html pour utiliser gallery-new.js au lieu de gallery.js</li>
+                            <li>Vérifier que tout fonctionne correctement</li>
+                            <li>Supprimer cette page (migrate.html)</li>
+                        </ol>
+                    `;
+                } else {
+                    resultContent.innerHTML = `
+                        <p class="error">❌ Erreur lors de la migration</p>
+                        <p>${result.message}</p>
+                    `;
+                }
+            } catch (error) {
+                resultContent.innerHTML = `
+                    <p class="error">❌ Erreur</p>
+                    <p>${error.message}</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

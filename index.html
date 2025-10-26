@@ -9,13 +9,18 @@
     <link rel="stylesheet" href="./styles/accueil.css">
     <link rel="stylesheet" href="./styles/responsive.css">
 </head>
-
+<body>
     <header>
         <div class="logo">
             <h1>Les p'tites bouilles</h1>
             <h1>villebonnaises</h1>
         </div>
-        <nav>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="mainNav">
             <ul>
                 <li><a href="./index.html" class="active">Accueil</a></li>
                 <li><a href="./pages/activites.html">Activités & Adhésion</a></li>
@@ -26,6 +31,7 @@
             </ul>
         </nav>
     </header>
+    <div class="menu-overlay" id="menuOverlay"></div>
 
     
     <!-- Carrousel de photos -->
@@ -101,6 +107,26 @@
         </div>
     </section>
 
+    <!-- Section Actualités -->
+    <section class="news-section">
+        <div class="container">
+            <div class="news-header">
+                <h2>📰 Actualités</h2>
+                <p>Restez informés de nos dernières activités et événements</p>
+            </div>
+            <div class="news-carousel">
+                <div class="news-container" id="newsContainer">
+                    <div class="news-slides" id="newsSlides">
+                        <!-- Les actualités seront chargées ici dynamiquement -->
+                    </div>
+                </div>
+                <button class="news-btn news-prev" id="newsPrevBtn">❮</button>
+                <button class="news-btn news-next" id="newsNextBtn">❯</button>
+            </div>
+            <div class="news-dots" id="newsDots"></div>
+        </div>
+    </section>
+
     <!-- Section des cartes principales -->
     <section class="main-cards">
         <div class="container">
@@ -112,7 +138,7 @@
                     <div class="card-arrow">→</div>
                 </div>
                 
-                <div class="main-card adhesion-card" onclick="location.href='./pages/activites.html'">
+                <div class="main-card adhesion-card" onclick="location.href='./pages/activites.html#adhesion'">
                     <div class="card-icon">👥</div>
                     <h3>ADHÉSION</h3>
                     <p>Rejoignez notre association ! Parents ou professionnel(le)s, venez partager des moments privilégiés et enrichissants avec vos enfants.</p>
@@ -137,6 +163,9 @@
                 <h4>Liens utiles</h4>
                 <ul>
                     <li><a href="./pages/mention-legale.html">Mentions légales</a></li>
+                    <li><a href="https://monenfant.fr/" target="_blank">Mon enfant.fr</a></li>
+                    <li><a href="https://www.urssaf.fr/" target="_blank">URSSAF</a></li>
+                    <li><a href="https://honorabilite.social.gouv.fr/" target="_blank">Attestation d'honorabilité</a></li>
                     <div class="social-icons">
                         <a href="https://www.facebook.com/share/1BGpTjQ6nd/" target="_blank">
                             <img src="./assets/facebook-logo.webp" alt="Facebook">
@@ -153,7 +182,7 @@
         </div>
     </footer>
 
+    <script src="./script/menu.js"></script>
     <script src="./script/accueil.js"></script>
-    <script src="./script/test.js"></script>
 </body>
 </html>

@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $nom = isset($_POST['nom']) ? trim($_POST['nom']) : '';
 $prenom = isset($_POST['prenom']) ? trim($_POST['prenom']) : '';
 $email = isset($_POST['email']) ? trim($_POST['email']) : '';
+$telephone = isset($_POST['telephone']) ? trim($_POST['telephone']) : '';
 $sujet = isset($_POST['sujet']) ? trim($_POST['sujet']) : '';
 $message = isset($_POST['message']) ? trim($_POST['message']) : '';
 $consentement = isset($_POST['consentement']) ? $_POST['consentement'] : '';
@@ -68,6 +69,7 @@ Nouveau message de contact depuis le site web
 Nom: $nom
 Prénom: $prenom
 Email: $email
+Téléphone: " . ($telephone ? $telephone : 'Non renseigné') . "
 Sujet: $sujet
 
 Message:
