@@ -17,11 +17,54 @@ function generatePhotos(folderName, count, altBase) {
     const photos = [];
     for (let i = 1; i <= count; i++) {
         photos.push({
-            url: `../assets/${folderName}/${folderName}${i}.png`,
-            alt: `${altBase} - Photo ${i}`
+            folder: folderName,
+            index: i,
+            alt: `${altBase} - Photo ${i}`,
+            url: null // L'URL sera déterminée dynamiquement
         });
     }
     return photos;
+}
+
+// Fonction pour trouver l'extension correcte d'une image
+async function findImageExtension(folder, fileName) {
+    const extensions = ['jpg', 'jpeg', 'png', 'webp', 'JPG', 'JPEG', 'PNG', 'WEBP'];
+
+    for (let ext of extensions) {
+        const url = `../assets/${folder}/${fileName}.${ext}`;
+        try {
+            const response = await fetch(url, { method: 'HEAD' });
+            if (response.ok) {
+                return url;
+            }
+        } catch (e) {
+            continue;
+        }
+    }
+    // Si aucune extension ne fonctionne, retourner png par défaut
+    return `../assets/${folder}/${fileName}.png`;
+}
+
+// Fonction pour résoudre les URLs des photos
+async function resolvePhotoUrls(photos) {
+    const resolvedPhotos = [];
+
+    for (let photo of photos) {
+        if (photo.url) {
+            // URL déjà définie
+            resolvedPhotos.push(photo);
+        } else {
+            // Rechercher l'extension correcte
+            const fileName = `${photo.folder}${photo.index}`;
+            const url = await findImageExtension(photo.folder, fileName);
+            resolvedPhotos.push({
+                url: url,
+                alt: photo.alt
+            });
+        }
+    }
+
+    return resolvedPhotos;
 }
 
 // Charger les albums depuis le JSON
@@ -49,7 +92,7 @@ async function loadAlbumsData() {
             });
 
             // Afficher les albums dynamiquement
-            displayAlbums(result.albums);
+            await displayAlbums(result.albums);
             console.log('Albums affichés!');
 
             // Initialiser la galerie une fois les données chargées
@@ -65,30 +108,34 @@ async function loadAlbumsData() {
 }
 
 // Afficher les albums dans la grille
-function displayAlbums(albums) {
+async function displayAlbums(albums) {
     const albumsGrid = document.getElementById('albumsGrid');
     if (!albumsGrid) return;
 
     albumsGrid.innerHTML = '';
 
-    albums.forEach(album => {
-        const albumCard = createAlbumCard(album);
-        albumsGrid.appendChild(albumCard);
+    // Créer toutes les cartes en parallèle pour de meilleures performances
+    const albumCards = await Promise.all(
+        albums.map(album => createAlbumCard(album))
+    );
+
+    // Ajouter les cartes à la grille
+    albumCards.forEach(card => {
+        albumsGrid.appendChild(card);
     });
 }
 
 // Créer une carte d'album
-function createAlbumCard(album) {
+async function createAlbumCard(album) {
     const card = document.createElement('div');
     card.className = 'album-card';
     card.dataset.album = album.id;
 
-    // Générer les URLs des photos miniatures
-    const folderPath = `../assets/${album.folderName}`;
-    const photo1 = `${folderPath}/${album.folderName}1.png`;
-    const photo2 = album.photoCount >= 2 ? `${folderPath}/${album.folderName}2.png` : photo1;
-    const photo3 = album.photoCount >= 3 ? `${folderPath}/${album.folderName}3.png` : photo1;
-    const photo4 = album.photoCount >= 4 ? `${folderPath}/${album.folderName}4.png` : photo1;
+    // Résoudre les URLs des photos miniatures avec détection automatique d'extension
+    const photo1 = await findImageExtension(album.folderName, `${album.folderName}1`);
+    const photo2 = album.photoCount >= 2 ? await findImageExtension(album.folderName, `${album.folderName}2`) : photo1;
+    const photo3 = album.photoCount >= 3 ? await findImageExtension(album.folderName, `${album.folderName}3`) : photo1;
+    const photo4 = album.photoCount >= 4 ? await findImageExtension(album.folderName, `${album.folderName}4`) : photo1;
 
     card.innerHTML = `
         <div class="album-thumbnail">
@@ -185,10 +232,17 @@ function setupModalEvents() {
     });
 }
 
-function openModal(albumId) {
+async function openModal(albumId) {
     if (!albumsData[albumId]) {
         console.error('Album non trouvé:', albumId);
         return;
+    }
+
+    const albumData = albumsData[albumId];
+
+    // Résoudre les URLs des photos si nécessaire
+    if (!albumData.photos[0].url) {
+        albumData.photos = await resolvePhotoUrls(albumData.photos);
     }
 
     currentAlbum = albumId;
@@ -197,13 +251,13 @@ function openModal(albumId) {
     // Mettre à jour le titre
     const modalTitle = document.getElementById('modalAlbumTitle');
     if (modalTitle) {
-        modalTitle.textContent = albumsData[albumId].title;
+        modalTitle.textContent = albumData.title;
     }
 
     // Mettre à jour le total de photos
     const totalPhotos = document.getElementById('totalPhotos');
     if (totalPhotos) {
-        totalPhotos.textContent = albumsData[albumId].photos.length;
+        totalPhotos.textContent = albumData.photos.length;
     }
 
     // Créer les dots de navigation
