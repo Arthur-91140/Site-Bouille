@@ -17,7 +17,7 @@ function generatePhotos(folderName, count, altBase) {
     const photos = [];
     for (let i = 1; i <= count; i++) {
         photos.push({
-            url: `../assets/gallery/${folderName}/photo-${i}.jpg`,
+            url: `../assets/${folderName}/${folderName}${i}.png`,
             alt: `${altBase} - Photo ${i}`
         });
     }
@@ -37,9 +37,14 @@ async function loadAlbumsData() {
                     title: album.title,
                     date: album.date,
                     icon: album.icon,
+                    folderName: album.folderName,
+                    photoCount: album.photoCount,
                     photos: generatePhotos(album.folderName, album.photoCount, album.title)
                 };
             });
+
+            // Afficher les albums dynamiquement
+            displayAlbums(result.albums);
 
             // Initialiser la galerie une fois les données chargées
             initializeGallery();
@@ -49,6 +54,59 @@ async function loadAlbumsData() {
     } catch (error) {
         console.error('Erreur:', error);
     }
+}
+
+// Afficher les albums dans la grille
+function displayAlbums(albums) {
+    const albumsGrid = document.getElementById('albumsGrid');
+    if (!albumsGrid) return;
+
+    albumsGrid.innerHTML = '';
+
+    albums.forEach(album => {
+        const albumCard = createAlbumCard(album);
+        albumsGrid.appendChild(albumCard);
+    });
+}
+
+// Créer une carte d'album
+function createAlbumCard(album) {
+    const card = document.createElement('div');
+    card.className = 'album-card';
+    card.dataset.album = album.id;
+
+    // Générer les URLs des photos miniatures
+    const folderPath = `../assets/${album.folderName}`;
+    const photo1 = `${folderPath}/${album.folderName}1.png`;
+    const photo2 = album.photoCount >= 2 ? `${folderPath}/${album.folderName}2.png` : photo1;
+    const photo3 = album.photoCount >= 3 ? `${folderPath}/${album.folderName}3.png` : photo1;
+    const photo4 = album.photoCount >= 4 ? `${folderPath}/${album.folderName}4.png` : photo1;
+
+    card.innerHTML = `
+        <div class="album-thumbnail">
+            <div class="thumbnail-grid">
+                <img src="${photo1}" alt="${album.title} 1" class="main-thumb">
+                <img src="${photo2}" alt="${album.title} 2" class="mini-thumb">
+                <img src="${photo3}" alt="${album.title} 3" class="mini-thumb">
+                <img src="${photo4}" alt="${album.title} 4" class="mini-thumb">
+            </div>
+            <div class="album-overlay">
+                <div class="photo-count">${album.photoCount} photo${album.photoCount > 1 ? 's' : ''}</div>
+                <div class="album-icon">${album.icon}</div>
+            </div>
+        </div>
+        <div class="album-info">
+            <h4>${album.title}</h4>
+            <span class="album-date">${album.date}</span>
+        </div>
+    `;
+
+    // Ajouter l'événement de clic
+    card.addEventListener('click', function() {
+        openModal(album.id);
+    });
+
+    return card;
 }
 
 // Initialisation au chargement de la page
@@ -62,15 +120,6 @@ function initializeGallery() {
     modalImage = document.getElementById('modalImage');
     prevBtn = document.getElementById('prevBtn');
     nextBtn = document.getElementById('nextBtn');
-
-    // Gestionnaires d'événements pour les albums
-    const albumCards = document.querySelectorAll('.album-card');
-    albumCards.forEach(card => {
-        card.addEventListener('click', function() {
-            const albumId = this.dataset.album;
-            openModal(albumId);
-        });
-    });
 
     // Gestionnaires d'événements pour la modale
     setupModalEvents();
@@ -110,9 +159,11 @@ function setupModalEvents() {
 
     // Navigation au clavier
     document.addEventListener('keydown', function(e) {
-        if (modal && modal.classList.contains('active')) {
+        if (modal && modal.style.display === 'block') {
             switch(e.key) {
                 case 'Escape':
+                case ' ':
+                    e.preventDefault();
                     closeModal();
                     break;
                 case 'ArrowLeft':
@@ -135,21 +186,32 @@ function openModal(albumId) {
     currentAlbum = albumId;
     currentPhotoIndex = 0;
 
-    // Ouvrir la modale
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-
     // Mettre à jour le titre
-    const modalTitle = document.querySelector('.modal-header h3');
+    const modalTitle = document.getElementById('modalAlbumTitle');
     if (modalTitle) {
-        modalTitle.textContent = `${albumsData[albumId].icon} ${albumsData[albumId].title}`;
+        modalTitle.textContent = albumsData[albumId].title;
     }
+
+    // Mettre à jour le total de photos
+    const totalPhotos = document.getElementById('totalPhotos');
+    if (totalPhotos) {
+        totalPhotos.textContent = albumsData[albumId].photos.length;
+    }
+
+    // Créer les dots de navigation
+    createDots();
 
     // Afficher la première photo
     displayPhoto(0);
 
-    // Créer les dots de navigation
-    createDots();
+    // Ouvrir la modale
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+
+    // Animation d'entrée
+    setTimeout(() => {
+        modal.style.opacity = '1';
+    }, 10);
 }
 
 function displayPhoto(index) {
@@ -162,30 +224,34 @@ function displayPhoto(index) {
 
     currentPhotoIndex = index;
 
-    // Afficher l'image
+    // Afficher l'image avec animation
     if (modalImage) {
-        modalImage.src = photos[index].url;
-        modalImage.alt = photos[index].alt;
+        modalImage.style.opacity = '0';
+        modalImage.style.transform = 'scale(0.95)';
+
+        setTimeout(() => {
+            modalImage.src = photos[index].url;
+            modalImage.alt = photos[index].alt;
+            modalImage.style.opacity = '1';
+            modalImage.style.transform = 'scale(1)';
+        }, 100);
     }
 
     // Mettre à jour le compteur
-    updatePhotoCounter();
+    const currentPhoto = document.getElementById('currentPhoto');
+    if (currentPhoto) {
+        currentPhoto.textContent = index + 1;
+    }
 
     // Mettre à jour les dots
     updateDots();
-
-    // Gérer la visibilité des boutons
-    if (prevBtn) {
-        prevBtn.style.display = (index === 0) ? 'none' : 'flex';
-    }
-    if (nextBtn) {
-        nextBtn.style.display = (index === photos.length - 1) ? 'none' : 'flex';
-    }
 }
 
 function navigatePhoto(direction) {
-    const newIndex = currentPhotoIndex + direction;
+    if (!currentAlbum) return;
+
     const album = albumsData[currentAlbum];
+    const newIndex = currentPhotoIndex + direction;
 
     if (newIndex >= 0 && newIndex < album.photos.length) {
         displayPhoto(newIndex);
@@ -194,30 +260,25 @@ function navigatePhoto(direction) {
 
 function closeModal() {
     if (modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-        currentAlbum = null;
-        currentPhotoIndex = 0;
-    }
-}
-
-function updatePhotoCounter() {
-    const counter = document.getElementById('photoCounter');
-    if (counter && currentAlbum) {
-        const album = albumsData[currentAlbum];
-        counter.textContent = `${currentPhotoIndex + 1} / ${album.photos.length}`;
+        modal.style.opacity = '0';
+        setTimeout(() => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            currentAlbum = null;
+            currentPhotoIndex = 0;
+        }, 300);
     }
 }
 
 function createDots() {
-    const dotsContainer = document.querySelector('.carousel-dots');
+    const dotsContainer = document.getElementById('carouselDots');
     if (!dotsContainer || !currentAlbum) return;
 
     const album = albumsData[currentAlbum];
     dotsContainer.innerHTML = '';
 
     album.photos.forEach((_, index) => {
-        const dot = document.createElement('span');
+        const dot = document.createElement('div');
         dot.className = 'dot';
         if (index === 0) dot.classList.add('active');
         dot.addEventListener('click', () => displayPhoto(index));
@@ -226,7 +287,7 @@ function createDots() {
 }
 
 function updateDots() {
-    const dots = document.querySelectorAll('.carousel-dots .dot');
+    const dots = document.querySelectorAll('#carouselDots .dot');
     dots.forEach((dot, index) => {
         dot.classList.toggle('active', index === currentPhotoIndex);
     });
