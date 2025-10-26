@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 // Configuration
 $maxFileSize = 5 * 1024 * 1024; // 5 Mo
 $allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
-$uploadDir = '../assets/gallery/';
+$uploadDir = '../assets/';
 $galleryDataFile = '../assets/gallery/gallery-data.json';
 
 // Vérifier que le dossier de destination existe
@@ -87,9 +87,9 @@ for ($i = 0; $i < $photoCount; $i++) {
         exit;
     }
 
-    // Générer un nom de fichier sécurisé
+    // Générer un nom de fichier sécurisé avec le pattern folderName + numéro
     $extension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-    $newFileName = 'photo-' . ($i + 1) . '.' . $extension;
+    $newFileName = 'photos-' . $albumId . ($i + 1) . '.' . $extension;
     $destination = $albumFolder . '/' . $newFileName;
 
     // Déplacer le fichier

@@ -26,11 +26,16 @@ function generatePhotos(folderName, count, altBase) {
 
 // Charger les albums depuis le JSON
 async function loadAlbumsData() {
+    console.log('Début du chargement des albums...');
     try {
         const response = await fetch('../script/get-albums-public.php');
+        console.log('Réponse reçue:', response);
         const result = await response.json();
+        console.log('Données JSON:', result);
 
         if (result.success && result.albums) {
+            console.log('Nombre d\'albums:', result.albums.length);
+
             // Convertir le format JSON en format albumsData
             result.albums.forEach(album => {
                 albumsData[album.id] = {
@@ -45,14 +50,17 @@ async function loadAlbumsData() {
 
             // Afficher les albums dynamiquement
             displayAlbums(result.albums);
+            console.log('Albums affichés!');
 
             // Initialiser la galerie une fois les données chargées
             initializeGallery();
         } else {
-            console.error('Erreur lors du chargement des albums');
+            console.error('Erreur lors du chargement des albums:', result);
+            alert('Erreur: Impossible de charger les albums');
         }
     } catch (error) {
-        console.error('Erreur:', error);
+        console.error('Erreur fetch:', error);
+        alert('Erreur de chargement: ' + error.message);
     }
 }
 
