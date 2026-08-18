@@ -1,0 +1,184 @@
+{
+    "albums": [
+        {
+            "id": "chataignes-2024",
+            "title": "\u00c0 la recherche des ch\u00e2taignes",
+            "date": "Octobre 2024",
+            "icon": "\ud83c\udf30",
+            "folderName": "photos-chataignes-2024",
+            "photoCount": 6,
+            "timestamp": 1771105930
+        },
+        {
+            "id": "anniversaires",
+            "title": "Anniversaires",
+            "date": "Toute l'ann\u00e9e",
+            "icon": "\ud83c\udf82",
+            "folderName": "photos-anniversaires",
+            "photoCount": 5,
+            "timestamp": 1771106029
+        },
+        {
+            "id": "atelier-cuisine",
+            "title": "Atelier Cuisine",
+            "date": "Toute l'ann\u00e9e",
+            "icon": "\ud83c\udf7d",
+            "folderName": "photos-atelier-cuisine",
+            "photoCount": 6,
+            "timestamp": 1771106134
+        },
+        {
+            "id": "espace-biodiversite",
+            "title": "Espace de Biodiversit\u00e9",
+            "date": "Mars 2025",
+            "icon": "\ud83e\udd8b",
+            "folderName": "photos-espace-biodiversite",
+            "photoCount": 3,
+            "timestamp": 1771106226
+        },
+        {
+            "id": "jardin-sensoriel",
+            "title": "Jardin Sensoriel",
+            "date": "Septembre 2025",
+            "icon": "\ud83c\udf3f",
+            "folderName": "photos-jardin-sensoriel",
+            "photoCount": 7,
+            "timestamp": 1771106305
+        },
+        {
+            "id": "atelier-snoezelen",
+            "title": "Atelier Snoezelen",
+            "date": "Toute l'ann\u00e9e",
+            "icon": "\ud83e\uddf8",
+            "folderName": "photos-atelier-snoezelen",
+            "photoCount": 5,
+            "timestamp": 1771106388
+        },
+        {
+            "id": "carnaval",
+            "title": "Carnaval",
+            "date": "F\u00e9vrier 2025",
+            "icon": "\ud83c\udfad",
+            "folderName": "photos-carnaval",
+            "photoCount": 4,
+            "timestamp": 1771106514
+        },
+        {
+            "id": "chasse-oeuf",
+            "title": "Chasse aux \u0152ufs",
+            "date": "Avril 2025",
+            "icon": "\ud83e\udd5a",
+            "folderName": "photos-chasse-oeuf",
+            "photoCount": 18,
+            "timestamp": 1771106671
+        },
+        {
+            "id": "balade-parc",
+            "title": "Balades au Parc",
+            "date": "Toute l'ann\u00e9e",
+            "icon": "\ud83d\udedd",
+            "folderName": "photos-balade-parc",
+            "photoCount": 15,
+            "timestamp": 1771106783
+        },
+        {
+            "id": "eveil-musical",
+            "title": "\u00c9veil Musical",
+            "date": "Toute l'ann\u00e9e",
+            "icon": "\ud83c\udfb5",
+            "folderName": "photos-eveil-musical",
+            "photoCount": 18,
+            "timestamp": 1771106868
+        },
+        {
+            "id": "hallowenn",
+            "title": "Halloween",
+            "date": "Octobre 2024",
+            "icon": "\ud83c\udf83",
+            "folderName": "photos-hallowenn",
+            "photoCount": 4,
+            "timestamp": 1771107007
+        },
+        {
+            "id": "jeux",
+            "title": "Jeux",
+            "date": "Toute l'ann\u00e9e",
+            "icon": "\ud83c\udfd0",
+            "folderName": "photos-jeux",
+            "photoCount": 18,
+            "timestamp": 1771107101
+        },
+        {
+            "id": "motricite",
+            "title": "Motricit\u00e9",
+            "date": "Toute l'ann\u00e9e",
+            "icon": "\ud83e\udd38",
+            "folderName": "photos-motricite",
+            "photoCount": 16,
+            "timestamp": 1771107176
+        },
+        {
+            "id": "noel",
+            "title": "No\u00ebl",
+            "date": "D\u00e9cembre 2024",
+            "icon": "\ud83c\udf84",
+            "folderName": "photos-noel",
+            "photoCount": 9,
+            "timestamp": 1771107282
+        },
+        {
+            "id": "pique-nique",
+            "title": "Pique-niques",
+            "date": "\u00c9t\u00e9 2024",
+            "icon": "\ud83e\uddfa",
+            "folderName": "photos-pique-nique",
+            "photoCount": 4,
+            "timestamp": 1771107357
+        },
+        {
+            "id": "raconte-tapis",
+            "title": "Raconte Tapis",
+            "date": "Mai 2025",
+            "icon": "\ud83d\udcd6",
+            "folderName": "photos-raconte-tapis",
+            "photoCount": 3,
+            "timestamp": 1771107389
+        },
+        {
+            "id": "spectacles",
+            "title": "Spectacles",
+            "date": "D\u00e9cembre 2024 et Juin 2025",
+            "icon": "\ud83e\udd29",
+            "folderName": "photos-spectacles",
+            "photoCount": 8,
+            "timestamp": 1771107451
+        },
+        {
+            "id": "spectacle-de-remi",
+            "title": "Spectacle de R\u00e9mi",
+            "date": "Avril 2025",
+            "icon": "\ud83c\udfdf",
+            "folderName": "photos-spectacle-de-remi",
+            "photoCount": 8,
+            "timestamp": 1771107525
+        },
+        {
+            "id": "yoga",
+            "title": "Yoga",
+            "date": "Mai 2025",
+            "icon": "\ud83e\uddd8",
+            "folderName": "photos-yoga",
+            "photoCount": 13,
+            "timestamp": 1771107579
+        },
+        {
+            "id": "mediation-animale",
+            "title": "M\u00e9diation animale",
+            "date": "Toute l'ann\u00e9e",
+            "icon": "\ud83d\udc39",
+            "folderName": "photos-mediation-animale",
+            "photoCount": 1,
+            "timestamp": 1777636256
+        }
+    ]
+}

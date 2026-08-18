@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="../styles/admin-gallery.css">
     <link rel="stylesheet" href="../styles/responsive.css">
 </head>
+
 <body>
     <header>
         <div class="logo">
@@ -50,7 +52,8 @@
                 <form id="loginForm" class="auth-form">
                     <div class="form-group">
                         <label for="password">Mot de passe</label>
-                        <input type="password" id="password" name="password" required placeholder="Entrez le mot de passe">
+                        <input type="password" id="password" name="password" required
+                            placeholder="Entrez le mot de passe">
                     </div>
                     <button type="submit" class="submit-btn">Se connecter</button>
                 </form>
@@ -65,7 +68,9 @@
             <div class="admin-header">
                 <h2>Gestion des Actualités</h2>
                 <div style="display: flex; gap: 1rem;">
-                    <a href="./admin-gallery.html" class="logout-btn" style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); text-decoration: none;">📸 Galerie</a>
+                    <a href="./admin-gallery.html" class="logout-btn"
+                        style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); text-decoration: none;">📸
+                        Galerie</a>
                     <button id="logoutBtn" class="logout-btn">Se déconnecter</button>
                 </div>
             </div>
@@ -83,9 +88,12 @@
 
                     <div class="form-group">
                         <label for="newsFile">Affiche (format 16:9)*</label>
-                        <input type="file" id="newsFile" name="newsFile" accept="image/jpeg,image/jpg,image/png,image/webp" required>
-                        <small>Formats acceptés: JPG, PNG, WEBP. Taille max: 5 Mo. Dimensions recommandées: 1920x1080px</small>
-                        <div id="newsPreview" class="photo-preview" style="grid-template-columns: 1fr; max-width: 600px; margin-top: 1rem;"></div>
+                        <input type="file" id="newsFile" name="newsFile"
+                            accept="image/jpeg,image/jpg,image/png,image/webp" required>
+                        <small>Formats acceptés: JPG, PNG, WEBP. Taille max: 5 Mo. Dimensions recommandées:
+                            1920x1080px</small>
+                        <div id="newsPreview" class="photo-preview"
+                            style="grid-template-columns: 1fr; max-width: 600px; margin-top: 1rem;"></div>
                     </div>
 
                     <button type="submit" class="submit-btn">
@@ -103,7 +111,8 @@
             <!-- Liste des actualités existantes -->
             <div class="admin-card">
                 <h3>📋 Actualités existantes</h3>
-                <p style="color: #666; margin-bottom: 1.5rem;">Les actualités sont affichées dans l'ordre chronologique (les plus récentes en premier)</p>
+                <p style="color: #666; margin-bottom: 1.5rem;">Les actualités sont affichées dans l'ordre chronologique
+                    (les plus récentes en premier)</p>
                 <div id="newsList" class="albums-list">
                     <p class="loading">Chargement des actualités...</p>
                 </div>
@@ -115,7 +124,9 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h4>À propos</h4>
-                <p>Les p'tites bouilles villebonnaises sont une association loi 1901, créée en 2013, ayant pour but la création et l'animation d'ateliers permettant le développement psychomoteur de l'enfant de moins de 4 ans, son épanouissement et sa socialisation.</p>
+                <p>Les p'tites bouilles villebonnaises sont une association loi 1901, créée en 2013, ayant pour but la
+                    création et l'animation d'ateliers permettant le développement psychomoteur de l'enfant de moins de
+                    4 ans, son épanouissement et sa socialisation.</p>
             </div>
             <div class="footer-section">
                 <h4>Contact</h4>
@@ -128,12 +139,14 @@
                     <li><a href="./mention-legale.html">Mentions légales</a></li>
                     <li><a href="https://monenfant.fr/" target="_blank">Mon enfant.fr</a></li>
                     <li><a href="https://www.urssaf.fr/" target="_blank">URSSAF</a></li>
-                    <li><a href="https://honorabilite.social.gouv.fr/" target="_blank">Attestation d'honorabilité</a></li>
+                    <li><a href="https://honorabilite.social.gouv.fr/" target="_blank">Attestation d'honorabilité</a>
+                    </li>
                     <div class="social-icons">
                         <a href="https://www.facebook.com/share/1BGpTjQ6nd/" target="_blank">
                             <img src="../assets/facebook-logo.webp" alt="Facebook">
                         </a>
-                        <a href="https://instagram.com" target="_blank">
+                        <a href="https://www.instagram.com/lesptitesbouillesvillebonnaise?igsh=MWU3NG9ydWd1a2R2Yw=="
+                            target="_blank">
                             <img src="../assets/Instagram_icon.webp" alt="Instagram">
                         </a>
                     </div>
@@ -148,4 +161,5 @@
     <script src="../script/menu.js"></script>
     <script src="../script/admin-news.js"></script>
 </body>
+
 </html>

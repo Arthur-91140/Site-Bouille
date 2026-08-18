@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,10 @@
     <link rel="stylesheet" href="../styles/contact.css">
     <link rel="stylesheet" href="../styles/faq.css">
     <link rel="stylesheet" href="../styles/responsive.css">
+    <script
+        src="https://www.google.com/recaptcha/enterprise.js?render=6Lec3U0sAAAAAB19CDBnvtz2AwBb0Iixh-EVKz0I"></script>
 </head>
+
 <body>
     <header>
         <div class="logo">
@@ -80,22 +84,31 @@
                 </div>
                 <div class="form-group">
                     <label for="telephone">Téléphone</label>
-                    <input type="tel" id="telephone" name="telephone" placeholder="Votre numéro de téléphone" maxlength="20">
+                    <input type="tel" id="telephone" name="telephone" placeholder="Votre numéro de téléphone"
+                        maxlength="20">
                 </div>
                 <div class="form-group">
                     <label for="sujet">Sujet*</label>
-                    <input type="text" id="sujet" name="sujet" placeholder="Sujet de votre message" required maxlength="100">
+                    <input type="text" id="sujet" name="sujet" placeholder="Sujet de votre message" required
+                        maxlength="100">
                 </div>
                 <div class="form-group">
                     <label for="message">Message*</label>
-                    <textarea id="message" name="message" rows="6" placeholder="Votre message" required maxlength="1000"></textarea>
+                    <textarea id="message" name="message" rows="6" placeholder="Votre message" required
+                        maxlength="1000"></textarea>
                 </div>
                 <div class="form-group checkbox-group">
                     <input type="checkbox" id="consentement" name="consentement" value="1" required>
-                    <label for="consentement">J'accepte que mes données soient traitées conformément à la politique de confidentialité.*</label>
+                    <label for="consentement">J'accepte que mes données soient traitées conformément à la politique de
+                        confidentialité.*</label>
                 </div>
+                <input type="hidden" id="recaptchaToken" name="recaptcha_token">
                 <button type="submit" class="submit-btn">Envoyer le message</button>
                 <p class="form-note">Les champs marqués d'un * sont obligatoires.</p>
+                <p class="recaptcha-notice">Ce site est protégé par reCAPTCHA et les <a
+                        href="https://policies.google.com/privacy" target="_blank">règles de confidentialité</a> et <a
+                        href="https://policies.google.com/terms" target="_blank">conditions d'utilisation</a> de Google
+                    s'appliquent.</p>
             </form>
         </div>
     </section>
@@ -104,7 +117,10 @@
         <h2>Nous trouver</h2>
         <div class="map-container">
             <div class="map-placeholder">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d603.3889357381325!2d2.235936392429429!3d48.69981559891924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e678767dda27fd%3A0xb4d991e72b9ec1c1!2s1%20Rue%20Jean%20Moulin%2C%2091140%20Villebon-sur-Yvette!5e1!3m2!1sfr!2sfr!4v1755003084011!5m2!1sfr!2sfr" width="100%" max-width="1200px" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d603.3889357381325!2d2.235936392429429!3d48.69981559891924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e678767dda27fd%3A0xb4d991e72b9ec1c1!2s1%20Rue%20Jean%20Moulin%2C%2091140%20Villebon-sur-Yvette!5e1!3m2!1sfr!2sfr!4v1755003084011!5m2!1sfr!2sfr"
+                    width="100%" max-width="1200px" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </section>
@@ -137,7 +153,9 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h4>À propos</h4>
-                <p>Les p'tites bouilles villebonnaises sont une association loi 1901, créée en 2013, ayant pour but la création et l'animation d'ateliers permettant le développement psychomoteur de l'enfant de moins de 4 ans, son épanouissement et sa socialisation.</p>
+                <p>Les p'tites bouilles villebonnaises sont une association loi 1901, créée en 2013, ayant pour but la
+                    création et l'animation d'ateliers permettant le développement psychomoteur de l'enfant de moins de
+                    4 ans, son épanouissement et sa socialisation.</p>
             </div>
             <div class="footer-section">
                 <h4>Contact</h4>
@@ -150,12 +168,14 @@
                     <li><a href="./mention-legale.html">Mentions légales</a></li>
                     <li><a href="https://monenfant.fr/" target="_blank">Mon enfant.fr</a></li>
                     <li><a href="https://www.urssaf.fr/" target="_blank">URSSAF</a></li>
-                    <li><a href="https://honorabilite.social.gouv.fr/" target="_blank">Attestation d'honorabilité</a></li>
+                    <li><a href="https://honorabilite.social.gouv.fr/" target="_blank">Attestation d'honorabilité</a>
+                    </li>
                     <div class="social-icons">
                         <a href="https://www.facebook.com/share/1BGpTjQ6nd/" target="_blank">
                             <img src="../assets/facebook-logo.webp" alt="Facebook">
                         </a>
-                        <a href="https://instagram.com" target="_blank">
+                        <a href="https://www.instagram.com/lesptitesbouillesvillebonnaise?igsh=MWU3NG9ydWd1a2R2Yw=="
+                            target="_blank">
                             <img src="../assets/Instagram_icon.webp" alt="Instagram">
                         </a>
                     </div>
@@ -170,4 +190,5 @@
     <script src="../script/menu.js"></script>
     <script src="../script/contact.js"></script>
 </body>
+
 </html>

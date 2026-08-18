@@ -38,7 +38,7 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
     opacity: 0.8;
     animation: pulse 15s infinite linear;
     z-index: 1;
@@ -224,53 +224,65 @@
     flex-grow: 1;
 }
 
-/* Couleurs d'activité qui s'appliquent aussi aux bordures de jour */
+/* Couleurs d'activité basées sur le planning officiel */
 .event-card.danse-event {
-    border-left: 5px solid #ff4d79;
+    border-left: 5px solid #ff00ff;
+    /* Magenta */
 }
 
 .event-card.musique-event {
-    border-left: 5px solid #58e8b8;
+    border-left: 5px solid #92d050;
+    /* Vert clair */
 }
 
 .event-card.mediation-event {
-    border-left: 5px solid #43cbff;
+    border-left: 5px solid #ffc000;
+    /* Orange */
 }
 
 .event-card.psychomotricite-event {
-    border-left: 5px solid #ffbc36;
+    border-left: 5px solid #ffff00;
+    /* Jaune */
 }
 
 .event-card.motricite-event {
-    border-left: 5px solid #ffbc36;
+    border-left: 5px solid #ffc000;
+    /* Orange */
 }
 
 .event-card.yoga-event {
-    border-left: 5px solid #43cbff;
+    border-left: 5px solid #00b0f0;
+    /* Bleu cyan */
 }
 
 .event-card.spectacle-event {
-    border-left: 5px solid #8b5cf6;
+    border-left: 5px solid #ff00ff;
+    /* Magenta */
 }
 
 .event-card.jardin-event {
-    border-left: 5px solid #58e8b8;
+    border-left: 5px solid #92d050;
+    /* Vert clair */
 }
 
 .event-card.jeux-event {
-    border-left: 5px solid #ffbc36;
+    border-left: 5px solid #ffff00;
+    /* Jaune */
 }
 
 .event-card.ferie-event {
-    border-left: 5px solid #8b5cf6;
+    border-left: 5px solid #bfbfbf;
+    /* Gris */
 }
 
 .event-card.vacances-event {
-    border-left: 5px solid #8b5cf6;
+    border-left: 5px solid #00b0f0;
+    /* Bleu cyan */
 }
 
 .event-card.special-event {
-    border-left: 5px solid #8b5cf6;
+    border-left: 5px solid #bfbfbf;
+    /* Gris pour rentrée */
 }
 
 /* Indicateur de catégorie d'événement */
@@ -281,53 +293,65 @@
     min-height: 60px;
 }
 
-/* Nouvelles activités des P'tites Bouilles */
+/* Gradients pour les indicateurs d'activité */
 .danse-event {
-    background: linear-gradient(to bottom, #ff4d79, #ff6b6b);
+    background: linear-gradient(to bottom, #ff66ff, #ff00ff);
+    /* Magenta */
 }
 
 .musique-event {
-    background: linear-gradient(to bottom, #a9f5b3, #58e8b8);
+    background: linear-gradient(to bottom, #b2e87a, #92d050);
+    /* Vert clair */
 }
 
 .mediation-event {
-    background: linear-gradient(to bottom, #43cbff, #4facfe);
+    background: linear-gradient(to bottom, #ffd966, #ffc000);
+    /* Orange */
 }
 
 .psychomotricite-event {
-    background: linear-gradient(to bottom, #ffcf5c, #ffbc36);
+    background: linear-gradient(to bottom, #ffff66, #ffff00);
+    /* Jaune */
 }
 
 .motricite-event {
-    background: linear-gradient(to bottom, #ffcf5c, #ffbc36);
+    background: linear-gradient(to bottom, #ffd966, #ffc000);
+    /* Orange */
 }
 
 .yoga-event {
-    background: linear-gradient(to bottom, #43cbff, #4facfe);
+    background: linear-gradient(to bottom, #66d4ff, #00b0f0);
+    /* Bleu cyan */
 }
 
 .spectacle-event {
-    background: linear-gradient(to bottom, #a78bfa, #8b5cf6);
+    background: linear-gradient(to bottom, #ff66ff, #ff00ff);
+    /* Magenta */
 }
 
 .jardin-event {
-    background: linear-gradient(to bottom, #a9f5b3, #58e8b8);
+    background: linear-gradient(to bottom, #b2e87a, #92d050);
+    /* Vert clair */
 }
 
 .jeux-event {
-    background: linear-gradient(to bottom, #ffcf5c, #ffbc36);
+    background: linear-gradient(to bottom, #ffff66, #ffff00);
+    /* Jaune */
 }
 
 .ferie-event {
-    background: linear-gradient(to bottom, #a78bfa, #8b5cf6);
+    background: linear-gradient(to bottom, #d9d9d9, #bfbfbf);
+    /* Gris */
 }
 
 .vacances-event {
-    background: linear-gradient(to bottom, #a78bfa, #8b5cf6);
+    background: linear-gradient(to bottom, #66d4ff, #00b0f0);
+    /* Bleu cyan */
 }
 
 .special-event {
-    background: linear-gradient(to bottom, #a78bfa, #8b5cf6);
+    background: linear-gradient(to bottom, #d9d9d9, #bfbfbf);
+    /* Gris */
 }
 
 /* Contenu de l'événement */
@@ -434,53 +458,65 @@
         align-self: flex-start;
     }
 
-    /* Couleurs d'activité en mode mobile - bordure haute */
+    /* Couleurs d'activité en mode mobile - bordure haute (basé sur le planning officiel) */
     .event-card.danse-event {
-        border-top-color: #ff4d79;
+        border-top-color: #ff00ff;
+        /* Magenta */
     }
 
     .event-card.musique-event {
-        border-top-color: #58e8b8;
+        border-top-color: #92d050;
+        /* Vert clair */
     }
 
     .event-card.mediation-event {
-        border-top-color: #43cbff;
+        border-top-color: #ffc000;
+        /* Orange */
     }
 
     .event-card.psychomotricite-event {
-        border-top-color: #ffbc36;
+        border-top-color: #ffff00;
+        /* Jaune */
     }
 
     .event-card.motricite-event {
-        border-top-color: #ffbc36;
+        border-top-color: #ffc000;
+        /* Orange */
     }
 
     .event-card.yoga-event {
-        border-top-color: #43cbff;
+        border-top-color: #00b0f0;
+        /* Bleu cyan */
     }
 
     .event-card.spectacle-event {
-        border-top-color: #8b5cf6;
+        border-top-color: #ff00ff;
+        /* Magenta */
     }
 
     .event-card.jardin-event {
-        border-top-color: #58e8b8;
+        border-top-color: #92d050;
+        /* Vert clair */
     }
 
     .event-card.jeux-event {
-        border-top-color: #ffbc36;
+        border-top-color: #ffff00;
+        /* Jaune */
     }
 
     .event-card.ferie-event {
-        border-top-color: #8b5cf6;
+        border-top-color: #bfbfbf;
+        /* Gris */
     }
 
     .event-card.vacances-event {
-        border-top-color: #8b5cf6;
+        border-top-color: #00b0f0;
+        /* Bleu cyan */
     }
 
     .event-card.special-event {
-        border-top-color: #8b5cf6;
+        border-top-color: #bfbfbf;
+        /* Gris */
     }
 
     .event-indicator {
@@ -493,7 +529,7 @@
         flex-direction: column;
         align-items: center;
     }
-    
+
     .download-calendar-btn {
         width: 100%;
         max-width: 300px;

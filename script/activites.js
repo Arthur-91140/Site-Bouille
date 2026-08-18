@@ -1,23 +1,24 @@
 // Script pour la page Activités et Adhésion
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // Validation et soumission du formulaire d'adhésion
+document.addEventListener('DOMContentLoaded', function () {
+
+    // Validation et soumission du formulaire d'adhésion avec reCAPTCHA
     const adhesionForm = document.querySelector('.contact-form');
     const submitBtn = document.querySelector('.submit-btn');
-    
+    const RECAPTCHA_SITE_KEY = '6Lec3U0sAAAAAB19CDBnvtz2AwBb0Iixh-EVKz0I';
+
     if (adhesionForm) {
-        adhesionForm.addEventListener('submit', function(e) {
+        adhesionForm.addEventListener('submit', async function (e) {
             e.preventDefault();
-            
+
             // Désactiver le bouton pendant l'envoi
             const originalText = submitBtn.textContent;
             submitBtn.disabled = true;
-            submitBtn.textContent = 'Envoi en cours...';
+            submitBtn.textContent = 'Vérification en cours...';
             submitBtn.style.opacity = '0.7';
-            
+
             // Récupérer les données du formulaire
             const formData = new FormData(this);
-            
+
             // Validation côté client
             const nom = formData.get('nom').trim();
             const prenom = formData.get('prenom').trim();
@@ -27,20 +28,20 @@ document.addEventListener('DOMContentLoaded', function() {
             const consentement = formData.get('consentement');
             const offre = formData.get('offre');
             const situations = formData.getAll('situation[]');
-            
+
             // Vérifications
             if (!nom || !prenom || !email || !sujet || !message || !consentement || !offre) {
                 afficherMessage('Tous les champs obligatoires doivent être remplis et vous devez accepter le traitement de vos données.', 'error');
                 resetSubmitButton();
                 return;
             }
-            
+
             if (situations.length === 0) {
                 afficherMessage('Veuillez sélectionner au moins une situation vous correspondant.', 'error');
                 resetSubmitButton();
                 return;
             }
-            
+
             // Validation email
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
@@ -48,29 +49,42 @@ document.addEventListener('DOMContentLoaded', function() {
                 resetSubmitButton();
                 return;
             }
-            
-            // Envoyer les données au serveur
-            fetch('../script/process_adhesion.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
+
+            try {
+                // Générer le token reCAPTCHA
+                submitBtn.textContent = 'Vérification anti-spam...';
+                const token = await grecaptcha.enterprise.execute(RECAPTCHA_SITE_KEY, { action: 'adhesion_submit' });
+                formData.append('recaptcha_token', token);
+                formData.append('recaptcha_action', 'adhesion_submit');
+
+                // Envoyer les données au serveur
+                submitBtn.textContent = 'Envoi en cours...';
+                const response = await fetch('../script/process_adhesion.php', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                // Redirection vers page 418 si spam détecté
+                if (response.status === 418) {
+                    window.location.href = './418.html';
+                    return;
+                }
+
+                const data = await response.json();
+
                 if (data.success) {
                     afficherMessage(data.message, 'success');
                     adhesionForm.reset();
                 } else {
                     afficherMessage(data.message, 'error');
                 }
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error('Erreur:', error);
                 afficherMessage('Une erreur est survenue lors de l\'envoi. Veuillez réessayer ou nous contacter directement.', 'error');
-            })
-            .finally(() => {
+            } finally {
                 resetSubmitButton();
-            });
-            
+            }
+
             function resetSubmitButton() {
                 submitBtn.disabled = false;
                 submitBtn.textContent = originalText;
@@ -78,26 +92,26 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
+
     // Fonction pour afficher les messages
     function afficherMessage(message, type) {
         // Supprimer les anciens messages
         const oldMessages = document.querySelectorAll('.form-message');
         oldMessages.forEach(msg => msg.remove());
-        
+
         // Créer le nouveau message
         const messageDiv = document.createElement('div');
         messageDiv.className = `form-message ${type}`;
         messageDiv.textContent = message;
-        
+
         // Insérer le message avant le formulaire
         const formContainer = document.querySelector('.contact-form-container');
         const form = document.querySelector('.contact-form');
         formContainer.insertBefore(messageDiv, form);
-        
+
         // Faire défiler vers le message
         messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        
+
         // Supprimer le message après 5 secondes si c'est un succès
         if (type === 'success') {
             setTimeout(() => {
@@ -107,14 +121,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 8000);
         }
     }
-    
+
     // Animation des cartes d'activités au scroll
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
-    
-    const observer = new IntersectionObserver(function(entries) {
+
+    const observer = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
@@ -122,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }, observerOptions);
-    
+
     // Observer toutes les cartes d'activités
     const activiteCards = document.querySelectorAll('.activite-card');
     activiteCards.forEach(card => {
@@ -131,14 +145,14 @@ document.addEventListener('DOMContentLoaded', function() {
         card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(card);
     });
-    
+
     // Amélioration UX pour les checkboxes
     const checkboxItems = document.querySelectorAll('.checkbox-item');
     checkboxItems.forEach(item => {
         const input = item.querySelector('input');
         const label = item.querySelector('label');
-        
-        label.addEventListener('click', function() {
+
+        label.addEventListener('click', function () {
             if (input.type === 'checkbox') {
                 input.checked = !input.checked;
             } else if (input.type === 'radio') {
@@ -146,29 +160,29 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     // Validation en temps réel des champs requis
     const requiredFields = document.querySelectorAll('input[required], textarea[required]');
     requiredFields.forEach(field => {
-        field.addEventListener('blur', function() {
+        field.addEventListener('blur', function () {
             if (this.value.trim() === '') {
                 this.style.borderColor = '#ef4444';
             } else {
                 this.style.borderColor = '#22c55e';
             }
         });
-        
-        field.addEventListener('input', function() {
+
+        field.addEventListener('input', function () {
             if (this.value.trim() !== '') {
                 this.style.borderColor = '#22c55e';
             }
         });
     });
-    
+
     // Validation email en temps réel
     const emailField = document.getElementById('email');
     if (emailField) {
-        emailField.addEventListener('blur', function() {
+        emailField.addEventListener('blur', function () {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (this.value && !emailRegex.test(this.value)) {
                 this.style.borderColor = '#ef4444';
@@ -177,32 +191,32 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
+
     // Compteur de caractères pour le textarea
     const messageField = document.getElementById('message');
     if (messageField) {
         const maxLength = messageField.getAttribute('maxlength');
-        
+
         // Créer un compteur
         const counter = document.createElement('div');
         counter.style.textAlign = 'right';
         counter.style.fontSize = '0.9rem';
         counter.style.color = '#666';
         counter.style.marginTop = '0.5rem';
-        
+
         messageField.parentNode.appendChild(counter);
-        
+
         function updateCounter() {
             const currentLength = messageField.value.length;
             counter.textContent = `${currentLength}/${maxLength} caractères`;
-            
+
             if (currentLength > maxLength * 0.9) {
                 counter.style.color = '#ef4444';
             } else {
                 counter.style.color = '#666';
             }
         }
-        
+
         messageField.addEventListener('input', updateCounter);
         updateCounter(); // Initial call
     }
